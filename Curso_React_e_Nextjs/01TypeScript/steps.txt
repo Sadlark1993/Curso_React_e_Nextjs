@@ -1,0 +1,18 @@
+npm init -y
+npm i typescript -D // instalando o typescript no repositório.
+
+//escreveu um codigo js qualquer no arquivo index.ts
+
+npx tsc index.ts //compilou o arquivo index.ts para um arquivo index.js
+
+node index.js // executando meu codigo js
+node index.ts //conseguiu executar pq o codigo é js
+
+//depois que coloquei tipo na variavel no .ts, o node nao conseguiu mais executar ele.
+
+/*o ts pode funcionar em dois modos: script mode ou module mode. Em script mode ele considera os 
+documentos como se fossem um so documento grande, isso pode dar problema, por exemplo, se tiver duas
+variaveis ou funcoes com o mesmo nome em documentos diferentes.*/
+
+/*Se vc exportar qualquer coisa no seu documento (export default nome), vai mudar automaticamente de
+script mode para module mode. Em 99,9% dos casos, vc estará trabalhando em module mode.*/
