@@ -1,4 +1,4 @@
-const objetoA = {
+export const objetoA = {
   chaveA: 'chave A',
   chaveB: 'chave B'
 }

@@ -26,4 +26,4 @@ function sum(x: number, y: number){
 }
 const result = sum(2, 3); //ele inferiu o tipo da variável como number.
 
-const soma2: (x: number, y:number)=>number = (x, y) =>  x + y; //mesma coisa q soma().
+export const soma2: (x: number, y:number)=>number = (x, y) =>  x + y; //mesma coisa q soma().
