@@ -1,5 +1,6 @@
 import './App.css';
 import { Component } from 'react';
+import { PostCard } from './components/postcard';
 
 
 class App extends Component{
@@ -10,13 +11,6 @@ class App extends Component{
       posts: [],
     }
   }
-
-  //this, makes the Component renders the posts into the screen.
-  /* componentDidMount(){ 
-    fetch('https://jsonplaceholder.typicode.com/posts') //returns a response json(array-of-objects)
-    .then(response => response.json()) //returns an js object
-    .then(respObj => this.setState({posts: respObj})); //this.state.posts = respObj
-  } */
 
   componentDidMount(){
     this.loadPosts();
@@ -36,8 +30,6 @@ class App extends Component{
       return {...post, photo: photosObj[index].url};
     });
 
-    //console.log(arrayPosts);
-
     this.setState({posts: arrayPosts});
 
   }
@@ -51,13 +43,7 @@ class App extends Component{
           <div className="posts">
             {posts.map(post=>( //returning this whole parenthesis.
 
-              <div key={post.id} className="post">
-                <img src={post.photo} alt={post.title}/>
-                <div className="post-content">
-                  <h1 >{post.title}</h1>
-                  <p>{post.body}</p>
-                </div>
-              </div>
+              <PostCard key={post.id} photo = {post.photo} title = {post.title} body = {post.body}/>
               
             ))}
           </div>
