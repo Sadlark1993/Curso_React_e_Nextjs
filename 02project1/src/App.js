@@ -23,15 +23,42 @@ class App extends Component{
           title: 'Title 3',
           body: 'body 3'
         },
-      ]
+      ],
+      counter: 0,
     }
+
+    this.timeOutUpdate = null;
+  }
+
+  //lifecycle methods: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+  //these methods, happens in a predetermined moment of the component's life.
+  componentDidMount(){ 
+    this.handleTimeOut();
+  }
+
+  componentDidUpdate(){
+    this.handleTimeOut();
+  }
+
+  componentWillUnmount(){
+    clearTimeout(this.timeOutUpdate);
+  }
+
+
+  handleTimeOut = () => {
+    const {posts, counter } = this.state;
+    posts[0].title = 'New Title';
+    this.timeOutUpdate = setTimeout(()=>{
+      this.setState({posts, counter: counter+1});
+    },1000);
   }
 
 
   render(){
-    const {posts} = this.state;
+    const {posts, counter} = this.state;
     return( //needs to return a JSX
       <div className="App">
+        <h1>{counter}</h1>
         {posts.map(post=>( //returning this whole parenthesis.
           //always put a key in the first element of the .map().
           <div key={post.id}>
@@ -43,26 +70,5 @@ class App extends Component{
     );
   }
 }
-
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-} */
 
 export default App;
