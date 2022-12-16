@@ -1,0 +1,3 @@
+npx create-react-app .
+npm start //executing "start" from package.json "scripts"
+npm test //executing App.test.js
