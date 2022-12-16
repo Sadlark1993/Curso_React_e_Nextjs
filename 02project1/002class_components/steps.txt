@@ -1,0 +1,26 @@
+//lesson 1
+npx create-react-app .
+npm start //executing "start" from package.json "scripts"
+npm test //executing App.test.js
+
+/*in index.js it creates a ReactDOM.root(<the HTMLElement that the React component will be placed in>), and then, it calls the method render() from that ReactDOM.root. The argument of that render() is the React component itself. */
+
+/*
+//concluding:
+ReactDOM.createRoot(document.getElementById('root').render( 
+  <React.StrictMode>
+    <App /> <!-- the React component -->
+  </React.StrictMode>                                       
+));
+*/
+
+// npm run build, will build the app using webpack and babel.
+
+//lesson 2
+//I've moved the files from the previous folder to this one
+npm install //to install dependencies, I don't know if I did right
+npx start //to test if it's working, and it is! 
+
+//now, I'll modify App.js to make it use class component, instead of function component.
+
+//to use js vars in JSX: {<var name>}
