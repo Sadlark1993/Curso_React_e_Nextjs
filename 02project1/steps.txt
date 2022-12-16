@@ -28,3 +28,18 @@ npx start //to test if it's working, and it is!
 npx create-react-app . //do it in a empty folder, does't need to npm init.
 
 //github course project: https://github.com/luizomf/curso-reactjs-nextjs-project-1
+
+  //lifecycle methods diagram: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+  //these methods, happens in a predetermined moment of the component's life.
+
+  //know components and props: https://pt-br.reactjs.org/docs/components-and-props.html
+  //React.Component: https://reactjs.org/docs/react-component.html
+
+  //API with random data to use: https://jsonplaceholder.typicode.com/
+
+   //this, makes the Component renders the posts into the screen.
+  /* componentDidMount(){ 
+    fetch('https://jsonplaceholder.typicode.com/posts') //returns a response json(array-of-objects)
+    .then(response => response.json()) //returns an js object
+    .then(respObj => this.setState({posts: respObj})); //this.state.posts = respObj
+  } */

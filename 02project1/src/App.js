@@ -7,65 +7,62 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      posts: [
-        {
-          id: 1,
-          title: 'Title 1',
-          body: 'body 1'
-        },
-        {
-          id: 2,
-          title: 'Title 2',
-          body: 'body 2'
-        },
-        {
-          id: 3,
-          title: 'Title 3',
-          body: 'body 3'
-        },
-      ],
-      counter: 0,
+      posts: [],
     }
-
-    this.timeOutUpdate = null;
   }
 
-  //lifecycle methods: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-  //these methods, happens in a predetermined moment of the component's life.
-  componentDidMount(){ 
-    this.handleTimeOut();
+  //this, makes the Component renders the posts into the screen.
+  /* componentDidMount(){ 
+    fetch('https://jsonplaceholder.typicode.com/posts') //returns a response json(array-of-objects)
+    .then(response => response.json()) //returns an js object
+    .then(respObj => this.setState({posts: respObj})); //this.state.posts = respObj
+  } */
+
+  componentDidMount(){
+    this.loadPosts();
   }
 
-  componentDidUpdate(){
-    this.handleTimeOut();
+  loadPosts = async () => {
+    //returns a response json(array-of-objects)
+    const postsResponse = fetch('https://jsonplaceholder.typicode.com/posts'); 
+    const photosResponse = fetch('https://jsonplaceholder.typicode.com/photos');
+
+    const [posts, photos] = await Promise.all([postsResponse, photosResponse]);
+    const postsObj = await posts.json();
+    const photosObj = await photos.json();
+
+
+    const arrayPosts = postsObj.map((post, index)=>{
+      return {...post, photo: photosObj[index].url};
+    });
+
+    //console.log(arrayPosts);
+
+    this.setState({posts: arrayPosts});
+
   }
-
-  componentWillUnmount(){
-    clearTimeout(this.timeOutUpdate);
-  }
-
-
-  handleTimeOut = () => {
-    const {posts, counter } = this.state;
-    posts[0].title = 'New Title';
-    this.timeOutUpdate = setTimeout(()=>{
-      this.setState({posts, counter: counter+1});
-    },1000);
-  }
-
 
   render(){
-    const {posts, counter} = this.state;
+    const {posts} = this.state;
     return( //needs to return a JSX
       <div className="App">
-        <h1>{counter}</h1>
-        {posts.map(post=>( //returning this whole parenthesis.
-          //always put a key in the first element of the .map().
-          <div key={post.id}>
-            <h1 >{post.title}</h1>
-            <p>{post.body}</p>
+
+        <section className="container">
+          <div className="posts">
+            {posts.map(post=>( //returning this whole parenthesis.
+
+              <div key={post.id} className="post">
+                <img src={post.photo} alt={post.title}/>
+                <div className="post-content">
+                  <h1 >{post.title}</h1>
+                  <p>{post.body}</p>
+                </div>
+              </div>
+              
+            ))}
           </div>
-        ))}
+        </section>
+
       </div>
     );
   }
