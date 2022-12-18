@@ -56,3 +56,33 @@ npx create-react-app . //do it in a empty folder, does't need to npm init.
   when a state is updated, it's component is rerendered. It's important for performance porpoises.  */
 
   //The teacher published the website on Netlify
+
+  /*
+    Yet about classes, this.setState() is asynchronous:
+
+    handleClick = () =>{
+      this.setState(counter: this.state.counter + 1);
+      console.log(this.state.counter);//this will print the outdated value.
+      //while the browser will show x, the console will show x-1. 
+      //this is so, because 'console.log()' will execute before this.setState(), that is async.
+    }
+
+    handleClick = () =>{
+      this.setState(counter: this.state.counter+1, ()=>{
+        console.log(this.state.counter); //this will print the updated value.
+      });
+
+    //another best way
+    //the component can have several setState's running, this helps to avoid problems with that.
+    handleClick = () => {
+      this.setState((prevState) => {
+        return {counter: prevState + 1};
+      },
+      () => {
+        console.log(this.state.counter);
+      }
+      );
+    } //you can do it using prevProps also.
+
+    }
+  */
