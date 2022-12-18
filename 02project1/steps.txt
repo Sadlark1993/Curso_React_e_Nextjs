@@ -27,7 +27,7 @@ npx start //to test if it's working, and it is!
 //lesson 3
 npx create-react-app . //do it in a empty folder, does't need to npm init.
 
-//github course project: https://github.com/luizomf/curso-reactjs-nextjs-project-1
+//GitHub course project: https://github.com/luizomf/curso-reactjs-nextjs-project-1
 
   //lifecycle methods diagram: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
   //these methods, happens in a predetermined moment of the component's life.
@@ -43,3 +43,16 @@ npx create-react-app . //do it in a empty folder, does't need to npm init.
     .then(response => response.json()) //returns an js object
     .then(respObj => this.setState({posts: respObj})); //this.state.posts = respObj
   } */
+
+  /*
+    Always brake your code in small components. It makes it easier to develop the application with some 
+    pattern and to do tests. 
+
+    Remember that the state of your component flows downward, and when it changes, the render() method is 
+    called again. 
+  */
+
+  /* Its really important to decide where the states of your components will live, it is so because 
+  when a state is updated, it's component is rerendered. It's important for performance porpoises.  */
+
+  //The teacher published the website on Netlify

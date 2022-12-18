@@ -9,7 +9,7 @@ export const SearchInput = ({searchValue, handleIChange}) =>{
         onChange={handleIChange}
         type="search"
         placeholder='search'
-        value={searchValue} //to update the html while the user types
+        value={searchValue} //to update the html while the user types. I don't know why
       />
     </div>
   )
