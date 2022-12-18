@@ -7,9 +7,9 @@ export const loadPosts = async () =>{
   const postsObj = await posts.json();
   const photosObj = await photos.json();
 
-
+  //inserts the photos urls in the objects of the array of objects.
   const arrayPosts = postsObj.map((post, index)=>{
-    return {...post, photo: photosObj[index].url};
+    return {...post, photo: photosObj[index].url}; //array of objects.
   });
 
   return arrayPosts;

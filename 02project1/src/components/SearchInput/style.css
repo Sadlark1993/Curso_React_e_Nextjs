@@ -1,0 +1,24 @@
+.searchInput input {
+	margin: 0 20px 20px 20px;
+	padding: 5px 10px;
+	outline: 2px;
+	border-radius: 5px;
+	border: 2px solid #666;
+	width: calc(100% - 40px);
+	font-size: 2em;
+}
+
+.searchInput input:focus {
+	outline: rgb(224, 126, 230) 2px solid;
+}
+
+.searchInput h1 {
+	margin: 20px;
+}
+
+.searchInput {
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}

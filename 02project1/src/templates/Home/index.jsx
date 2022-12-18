@@ -5,6 +5,7 @@ import { Component } from 'react';
 import {loadPosts} from '../../utils/loadPosts'
 import { Posts } from '../../components/posts';
 import { Button } from '../../components/Button';
+import { SearchInput } from '../../components/SearchInput';
 
 export class Home extends Component{
   //if you use class fields, you will not need to use constructor. Its just put the vars in the class.
@@ -15,13 +16,14 @@ export class Home extends Component{
       allPosts: [],
       page: 0,
       nPosts: 3,
-      disabled: false
+      disabled: false,
+      searchValue: '',
     }
   }
 
-  //loadPosts() returns a promisse. So, this method must be async.
+  //loadPosts() returns a promise. So, this method must be async.
   async componentDidMount(){
-    const arrayPosts = await loadPosts();
+    const arrayPosts = await loadPosts(); //fetch the posts and images
     const {page, nPosts} = this.state;
     this.setState({
       posts: arrayPosts.slice(page, nPosts),
@@ -29,10 +31,9 @@ export class Home extends Component{
     });
   }
 
-
+  //load more 3 posts in the page.
   handleNextPage = ()=>{
     let {page, nPosts, allPosts, posts} = this.state;
-    console.log(page);
     page = page + nPosts;
     const nextPosts = allPosts.slice(page, page+nPosts);
     posts.push(...nextPosts);
@@ -43,12 +44,31 @@ export class Home extends Component{
     },65);
   }
 
+  handleIChange = (event) =>{
+    //console.log(event.target.value);
+    this.setState({searchValue: event.target.value});
+  }
+
   render(){
-    const {posts, disabled} = this.state;
+    const {posts, disabled, searchValue, allPosts} = this.state;
+
+    const filteredPosts = !!searchValue ? allPosts.filter((item) => {
+      return item.title.toLowerCase().includes(searchValue.toLowerCase());
+    }) :
+      posts;
+
     return( //needs to return a JSX
       <section className="container">
-        <Posts posts = {posts}/>
-        <Button disabled = {disabled} clickEvent = {this.handleNextPage}/>
+
+        <SearchInput searchValue={searchValue} handleIChange = {this.handleIChange}/>
+
+        {filteredPosts.length > 0 && <Posts posts = {filteredPosts}/>}
+        {filteredPosts.length === 0 && <p>No post matching the search. =(</p>}
+
+        {/* 'clickEvent' is not an event. Its an atribute that is sent to the react element Button. */}
+        {/* Manipulating the state based on the input value of search. The second side of the logic
+        operator will execute only if the first one is truthy */}
+        {!searchValue && <Button disabled = {disabled} clickEvent = {this.handleNextPage}/>}
       </section>
     );
   }
