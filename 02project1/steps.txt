@@ -102,7 +102,10 @@ npm test -- --coverage
 
 /*
 it will create a folder called 'coverage/lcov-report' where you can run 'index.hmt' to see the 
-entire report of tests coverage of your project.
+report of tests coverage of your project.
 */
+//to see the coverage report of your entire project:
+npm test -- --watchAll="false" --coverage
+
 
 //the important thing isn't to test every line of code, but to test what you actually want to happen.
