@@ -86,3 +86,23 @@ npx create-react-app . //do it in a empty folder, does't need to npm init.
 
     }
   */
+
+//****************Testing*****************
+
+//jest cheat sheet: https://github.com/sapegin/jest-cheat-sheet
+//jest-dom https://github.com/testing-library/jest-dom
+
+//command:
+npm test
+
+//the extension of the file can be .test.jsx or .spec.jsx for unit tests
+
+//check the coverage of the test
+npm test -- --coverage
+
+/*
+it will create a folder called 'coverage/lcov-report' where you can run 'index.hmt' to see the 
+entire report of tests coverage of your project.
+*/
+
+//the important thing isn't to test every line of code, but to test what you actually want to happen.

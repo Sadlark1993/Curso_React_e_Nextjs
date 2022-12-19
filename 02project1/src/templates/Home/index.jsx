@@ -1,6 +1,6 @@
 import './style.css';
 
-import { Component, useCallback, useEffect, useState } from 'react';
+import {useCallback, useEffect, useState } from 'react';
 
 import {loadPosts} from '../../utils/loadPosts'
 import { Posts } from '../../components/posts';
@@ -58,7 +58,7 @@ export const Home = () =>{
     setPosts(posts);
     setTimeout(()=>{
       document.querySelector('button').scrollIntoView({behavior: 'smooth', block: 'start',});
-    },65);
+    },200);
   }
 
   const handleIChange = (event) =>{
@@ -76,7 +76,7 @@ export const Home = () =>{
         {/* 'clickEvent' is not an event. Its an atribute that is sent to the react element Button. */}
         {/* Manipulating the state based on the input value of search. The second side of the logic
         operator will execute only if the first one is truthy */}
-        {!searchValue && <Button disabled = {disabled} clickEvent = {handleNextPage}/>}
+        {!searchValue && <Button disabled = {disabled} clickEvent = {handleNextPage} text={'Load more posts'}/>}
       </section>
     );
 }
