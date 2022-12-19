@@ -4,8 +4,9 @@ import { Button } from ".";
 
 describe('<Button />', ()=>{
   it('should render with the text "Load more"', ()=>{
+    const fn = jest.fn();
     expect.assertions(1); //to check if the assertions happened 
-    render(<Button text={'Load more posts'} />);
+    render(<Button text={'Load more posts'} clickEvent={fn} />);
     const button = screen.getByRole('button', {name: /load more/i});
     expect(button).toBeInTheDocument();
   });
@@ -26,12 +27,13 @@ describe('<Button />', ()=>{
 
     expect(fn).toBeCalled();
     expect(button).toBeEnabled();
-  })
+  });
 
   it('should be disabled when disabled is true', ()=>{
-    render(<Button text="Load more posts" disabled={true}/>);
+    const fn = jest.fn();
+    render(<Button text="Load more posts" disabled={true} clickEvent={fn}/>);
     const button = screen.getByRole('button', {name: /load more/i});
 
     expect(button).toBeDisabled();
-  })
+  });
 })

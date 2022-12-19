@@ -1,3 +1,4 @@
+import P from 'prop-types'
 import './style.css'
 
 export const SearchInput = ({searchValue, handleIChange}) =>{
@@ -13,4 +14,10 @@ export const SearchInput = ({searchValue, handleIChange}) =>{
       />
     </div>
   )
+}
+
+
+SearchInput.propTypes = {
+  searchValue: P.string.isRequired,
+  handleIChange: P.func.isRequired,
 }

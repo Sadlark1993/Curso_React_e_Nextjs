@@ -21,7 +21,7 @@ export const Home = () =>{
   const [disabled, setDisabled] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
-  const filteredPosts = !!searchValue ? allPosts.filter((item) => {
+  const filteredPosts = searchValue ? allPosts.filter((item) => {
     return item.title.toLowerCase().includes(searchValue.toLowerCase());
   }) 
   :

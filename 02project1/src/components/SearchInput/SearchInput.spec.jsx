@@ -3,6 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { SearchInput } from "."
 
 
+
+
 describe('<SearchInput />', ()=>{
   it('should input value to be "testing..."', ()=>{
     const fn = jest.fn();
@@ -16,7 +18,7 @@ describe('<SearchInput />', ()=>{
 
   it('should call handleChange function on each key pressed', ()=>{
     const fn = jest.fn();
-    render(<SearchInput handleIChange={fn}/>);
+    render(<SearchInput handleIChange={fn} searchValue={'a random value'}/>);
 
     const screenConst = screen.getByPlaceholderText(/search/i);
     const value = 'a random value';
