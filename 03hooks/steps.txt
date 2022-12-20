@@ -1,0 +1,11 @@
+//created files .editorconfig, .prettierrc.js, .eslintrc.js and added the config of the teacher.
+
+npm i -D prettier eslint-config-prettier eslint-plugin-prettier
+
+//adjust the files
+npx eslint src/**/*.js --fix
+
+//adjust the .jsx filles
+npx eslint src/**/*.js --fix
+
+npm i prop-types
