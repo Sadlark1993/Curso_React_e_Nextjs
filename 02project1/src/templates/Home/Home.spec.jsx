@@ -6,7 +6,7 @@ import { render, screen, waitForElementToBeRemoved } from "@testing-library/reac
 import { Home } from "."
 
 /* 
-  To intercept the requisition (fetch()) and mok a response.
+  To intercept the requisition (fetch()) and mock a response.
 */
 //request, response, context
 const handlers = [//the teacher put both responses in one get(). I chose to do this way instead.
@@ -72,7 +72,18 @@ describe('<Home />', ()=>{
     const noMorePosts = screen.getByText(/no post matching the search/i);
     await waitForElementToBeRemoved(noMorePosts);
 
+    expect.assertions(3);
+
+    const search = screen.getByPlaceholderText(/search/i);
+    expect(search).toBeInTheDocument();
+
+    const image = screen.getAllByRole('img', {name:/title/i});
+    expect(image).toHaveLength(3);
+    
+    const btn = screen.getByRole('button', {name: /load more posts/i});
+    expect(btn).toBeInTheDocument();
+    //to check if we have 3 images in screen.
     //this print the html of the screen in the terminal.
-    screen.debug();
+    //screen.debug();
   })
 })

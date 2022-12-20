@@ -40,7 +40,7 @@ export const Home = () =>{
   //if a variable of this array change, the function will be re-called.
   */
   useEffect(()=>{ //its executing 2 times when the page es reload.
-    console.log('foi');
+    //console.log('foi');
     loadFirstPosts(0, nPosts);
   },[loadFirstPosts, nPosts]);
 
