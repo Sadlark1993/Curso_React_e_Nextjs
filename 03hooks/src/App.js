@@ -1,75 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 //import { Component } from 'react'; //this is so when using class component.
 
 //using function component with hooks:
 function App() {
   //const[stateVariable, variableSetter] = useState(initialValue);
-  const [reverse, setReverse] = useState(false);
+  //states: every time the state changes, the component is re-tenderized on screen.
   const [counter, setCounter] = useState(0);
 
-  const reverseClass = reverse ? 'reverse' : '';
+  //componentDidUpdate().
+  //it happens every time the component is updated (including mounted).
+  useEffect(() => {
+    console.log('Component did update');
+  });
 
-  const handleClick = () => {
-    setReverse(!reverse);
-    setCounter(counter + 1);
+  //componentDidMount(): same as the previous, but with an dependencies array in args.
+  //it happens once the component is mounted.
+  useEffect(() => {
+    console.log('Component did mount');
+  }, []);
+  /*note: in console, it will print 2x, but before each time, it will restart the states. So,
+  the effect will be the same. Also, it only happens in development mode, not when it is builded.
+  */
 
-    //you can use a callback inside the setState to guarantee that the value update will occur correctly
-    //setCounter((prevCounter)=>prevCounter+1); //this also works.
-    //setReverse((prevReverse)=>!prevReverse);
-  };
+  //this """componentDidMount()""" will be called when the dependency 'counter' change also.
+  useEffect(() => {
+    console.log(`Counter changed to ${counter}`);
+  }, [counter]);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Counter: {counter}.</h1>
-        <img src={logo} className={`App-logo ${reverseClass} `} alt="logo" />
-        <p>
-          {`Reverse:
-            ${reverse ? 'ON.' : 'OFF'}`}
-        </p>
-        <button type="button" onClick={handleClick}>
-          Reverse
-        </button>
-      </header>
+      <h1>Contador: {counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
     </div>
   );
 }
 
-//using class component:
-/* class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reverse: false,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    const { reverse } = this.state;
-    this.setState({ reverse: !reverse });
-  }
-
-  render() {
-    const { reverse } = this.state;
-    const reverseClass = reverse ? 'reverse' : '';
-
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className={`App-logo ${reverseClass} `} alt="logo" />
-          <p>
-            {`Reverse:
-            ${reverse ? 'ON.' : 'OFF'}`}
-          </p>
-          <button type="button" onClick={this.handleClick}>
-            Reverse
-          </button>
-        </header>
-      </div>
-    );
-  }
-} */
 export default App;
