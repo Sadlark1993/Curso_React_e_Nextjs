@@ -9,3 +9,5 @@ npx eslint src/**/*.js --fix
 npx eslint src/**/*.js --fix
 
 npm i prop-types
+
+//link to read: https://pt-br.reactjs.org/docs/hooks-state.html
