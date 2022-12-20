@@ -4,6 +4,7 @@ import {setupServer} from 'msw/node'
 
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react"
 import { Home } from "."
+import userEvent from '@testing-library/user-event';
 
 /* 
   To intercept the requisition (fetch()) and mock a response.
@@ -31,6 +32,24 @@ const handlers = [//the teacher put both responses in one get(). I chose to do t
         "title": "Title 3",
         "body": "Body number 3. You know."
       },
+      {
+        "userId": 4,
+        "id": 4,
+        "title": "Title 4",
+        "body": "Body number 4. You know."
+      },
+      {
+        "userId": 5,
+        "id": 5,
+        "title": "Title 5",
+        "body": "Body number 5. You know."
+      },
+      {
+        "userId": 6,
+        "id": 6,
+        "title": "Title 6",
+        "body": "Body number 6. You know."
+      },
     ]));
   }),
 
@@ -45,6 +64,15 @@ const handlers = [//the teacher put both responses in one get(). I chose to do t
       },
       {
         "url": "img/img3.png"
+      },
+      {
+        "url": "img/img4.png"
+      },
+      {
+        "url": "img/img5.png"
+      },
+      {
+        "url": "img/img6.png"
       },
     ]))
   })
@@ -72,7 +100,7 @@ describe('<Home />', ()=>{
     const noMorePosts = screen.getByText(/no post matching the search/i);
     await waitForElementToBeRemoved(noMorePosts);
 
-    expect.assertions(3);
+    expect.assertions(23);
 
     const search = screen.getByPlaceholderText(/search/i);
     expect(search).toBeInTheDocument();
@@ -84,6 +112,61 @@ describe('<Home />', ()=>{
     expect(btn).toBeInTheDocument();
     //to check if we have 3 images in screen.
     //this print the html of the screen in the terminal.
+    
+
+    //only the 3 first post must be on screen.
+    expect(screen.getByRole('heading', {name: 'Title 1'})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: 'Title 2'})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: 'Title 3'})).toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 4'})).not.toBeInTheDocument();
+
+    //the title of the search must be hidden.
+    expect(screen.queryByRole('heading', {name: /search results for/i})).not.toBeInTheDocument();
+
+    //the 'no post matching' must be hidden.
+    expect(screen.queryByRole('paragraph', {name: /no post matching/i})).not.toBeInTheDocument();
+
+    userEvent.type(search, 'Title 1');
+
+    //only the searched post must be on screen.
+    expect(screen.getByRole('heading', {name: 'Title 1'})).toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 2'})).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 3'})).not.toBeInTheDocument();
+
+    //the title of the search must appear.
+    expect(screen.queryByRole('heading', {name: /search results for/i})).toBeInTheDocument();
+
+    //the 'no post matching' must be hidden.
+    expect(screen.queryByRole('paragraph', {name: /no post matching/i})).not.toBeInTheDocument();
+
+
+    userEvent.clear(search); //clears the search
+
+    //all of the 3 posts must be on screen.
+    expect(screen.getByRole('heading', {name: 'Title 1'})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: 'Title 2'})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: 'Title 3'})).toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 4'})).not.toBeInTheDocument();
+
+    //the title of the search must appear.
+    expect(screen.queryByRole('heading', {name: /search results for/i})).not.toBeInTheDocument();
+
+    //the 'no post matching' must be hidden.
+    expect(screen.queryByRole('paragraph', {name: /no post matching/i})).not.toBeInTheDocument();
+
+
+    userEvent.type(search, 'AAAAAAAAAAAHHHH que delícia cara!!');
     //screen.debug();
-  })
+
+    //no post must appear
+    expect(screen.queryAllByRole('img')).toHaveLength(0);
+    
+    //the title of the search must appear.
+    expect(screen.queryByRole('heading', {name: /search results for/i})).toBeInTheDocument();
+
+    //the 'no post matching' must appear.
+    expect(screen.queryByText(/no post matching/i)).toBeInTheDocument();
+
+    
+  });
 })
