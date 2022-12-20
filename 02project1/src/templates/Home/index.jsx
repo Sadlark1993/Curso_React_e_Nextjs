@@ -50,7 +50,7 @@ export const Home = () =>{
     const newPage = page + nPosts;
     const nextPosts = allPosts.slice(newPage, newPage+nPosts);
     posts.push(...nextPosts);
-    if(page+nPosts >= allPosts.length ) setDisabled(true);
+    if(newPage+nPosts >= allPosts.length ) setDisabled(true);
     //this.setState({ page, posts}); 
     setPage(newPage);
     setPosts(posts);

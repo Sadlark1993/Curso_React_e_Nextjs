@@ -100,7 +100,7 @@ describe('<Home />', ()=>{
     const noMorePosts = screen.getByText(/no post matching the search/i);
     await waitForElementToBeRemoved(noMorePosts);
 
-    expect.assertions(23);
+    expect.assertions(9);
 
     const search = screen.getByPlaceholderText(/search/i);
     expect(search).toBeInTheDocument();
@@ -125,6 +125,22 @@ describe('<Home />', ()=>{
 
     //the 'no post matching' must be hidden.
     expect(screen.queryByRole('paragraph', {name: /no post matching/i})).not.toBeInTheDocument();
+
+   
+    
+  });
+
+  it('should render posts by the current search', async ()=>{
+    render(<Home />);
+     
+    //Need to do this because the posts are fetching from other website. It's asynchronous.
+    const noMorePosts = screen.getByText(/no post matching the search/i);
+    await waitForElementToBeRemoved(noMorePosts);
+
+    expect.assertions(15);
+
+    const search = screen.getByPlaceholderText(/search/i);
+    expect(search).toBeInTheDocument();
 
     userEvent.type(search, 'Title 1');
 
@@ -167,6 +183,30 @@ describe('<Home />', ()=>{
     //the 'no post matching' must appear.
     expect(screen.queryByText(/no post matching/i)).toBeInTheDocument();
 
-    
   });
+
+  it('should load more posts when the button is pressed', async ()=>{
+    render(<Home />);
+     
+    //Need to do this because the posts are fetching from other website. It's asynchronous.
+    const noMorePosts = screen.getByText(/no post matching the search/i);
+    await waitForElementToBeRemoved(noMorePosts);
+
+    const btn = screen.getByRole('button', {name: /load more/i});
+    expect(btn).toBeInTheDocument();
+
+    expect(screen.queryByRole('heading', {name: 'Title 4'})).not.toBeInTheDocument();
+    
+    userEvent.click(btn);
+    expect(screen.queryByRole('heading', {name: 'Title 4'})).toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 5'})).toBeInTheDocument();
+    expect(screen.queryByRole('heading', {name: 'Title 6'})).toBeInTheDocument();
+
+
+    expect(btn).toBeDisabled();
+
+
+
+  });
+
 })
