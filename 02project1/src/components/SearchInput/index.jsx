@@ -4,7 +4,7 @@ import './style.css'
 export const SearchInput = ({searchValue, handleIChange}) =>{
   return( 
     <div className="searchInput">
-      {searchValue !== "" && <h1> Search results for "{searchValue}":</h1>}
+      {searchValue !== "" && <h1> Search results for &quot;{searchValue}&quot;:</h1>}
 
       <input
         onChange={handleIChange}
