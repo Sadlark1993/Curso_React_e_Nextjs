@@ -1,3 +1,6 @@
+/*the lessons will be recorded in the commits. I will not crate several projects, each one with
+a different lesson*/
+
 //created files .editorconfig, .prettierrc.js, .eslintrc.js and added the config of the teacher.
 
 npm i -D prettier eslint-config-prettier eslint-plugin-prettier
