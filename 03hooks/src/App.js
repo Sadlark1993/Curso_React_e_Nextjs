@@ -1,14 +1,16 @@
 //Warning: NEVER use hooks inside blocks, such as while, if or for. <--------------
 
 import P from 'prop-types';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import './App.css';
 
-const Post = ({ post }) => {
+const Post = ({ post, handleTitle }) => {
   console.log('child rendered');
   return (
     <div key={post.id} className="post">
-      <h1 className="Title">{post.title}</h1>
+      <h1 onClick={() => handleTitle(post.title)} className="Title">
+        {post.title}
+      </h1>
       <div>{post.body}</div>
     </div>
   );
@@ -20,6 +22,7 @@ Post.propTypes = {
     title: P.string,
     body: P.string,
   }),
+  handleTitle: P.func,
 };
 
 /*each time the state changes, this function is re-called, and all the functions inside it is
@@ -28,21 +31,35 @@ and useMemo(). */
 function App() {
   const [posts, setPosts] = useState([]);
   const [value, setValue] = useState('');
+  const input = useRef(null); //the ref input initiates referencing null
+  const counter = useRef(0);
 
   console.log('Parent rendered');
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then((resp) => resp.json())
-        .then((resp) => setPosts(resp));
-    }, 5000);
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((resp) => resp.json())
+      .then((resp) => setPosts(resp));
   }, []);
+
+  const handleTitle = (titleValue) => {
+    setValue(titleValue);
+    //my way
+    //document.querySelector('input').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    //teacher's way
+    input.current.focus(); //use it to reference an object. Its mutable just like a variable.
+  };
+
+  useEffect(() => {
+    counter.current++; //it isn't a state. So, it does't trigger re-rendering.
+  });
 
   return (
     <div className="App">
+      <h6> Parent rendered {counter.current} times.</h6>
       <p>
-        <input value={value} onChange={(event) => setValue(event.target.value)} />
+        <input ref={input} value={value} onChange={(event) => setValue(event.target.value)} />
       </p>
       {/* useMemo() will save the return value and prevent 'Post' from be re-rendered 100 times after the
       press of each key on the input field.
@@ -52,7 +69,7 @@ function App() {
         return (
           posts.length > 0 &&
           posts.map((post) => {
-            return <Post key={post.id} post={post} />;
+            return <Post key={post.id} handleTitle={handleTitle} post={post} />;
           })
         );
       }, [posts])}
