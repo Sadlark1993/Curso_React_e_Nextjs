@@ -1,51 +1,62 @@
-//Warning: NEVER use hook inside blocs, such as while, if or for. <--------------
+//Warning: NEVER use hooks inside blocks, such as while, if or for. <--------------
 
 import P from 'prop-types';
+import { useEffect, useState, useMemo } from 'react';
 import './App.css';
-import React, { useCallback, useState, useMemo } from 'react';
 
-//always remember to do the destructuring...
-const Button = ({ incrementFn }) => {
-  console.log('child ran');
-  return <button onClick={() => incrementFn(10)}>+</button>;
+const Post = ({ post }) => {
+  console.log('child rendered');
+  return (
+    <div key={post.id} className="post">
+      <h1 className="Title">{post.title}</h1>
+      <div>{post.body}</div>
+    </div>
+  );
 };
 
-Button.propTypes = {
-  incrementFn: P.func,
+Post.propTypes = {
+  post: P.shape({
+    id: P.number,
+    title: P.string,
+    body: P.string,
+  }),
 };
 
 /*each time the state changes, this function is re-called, and all the functions inside it is
 re-crated/re-called. To avoid heavy functions to be re-executed or re-created, we use 'useCallback'
 and useMemo(). */
 function App() {
-  //const[stateVariable, variableSetter] = useState(initialValue);
-  //states: every time the state changes, the component is re-tenderized on screen.
-  const [counter, setCounter] = useState(0);
+  const [posts, setPosts] = useState([]);
+  const [value, setValue] = useState('');
 
-  /*
-  with the 'incrementFn' being inside a useCallback(), his value will not change when the state changes,
-  so, the argument of Button() will not change as well. It makes memoized Button to not be rendered every
-  time the state change.
-  */
-  const incrementFn = useCallback((num) => {
-    setCounter((prevCounter) => prevCounter + num);
-    console.log('incremented');
+  console.log('Parent rendered');
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((resp) => resp.json())
+        .then((resp) => setPosts(resp));
+    }, 5000);
   }, []);
-
-  console.log('Parent ran');
 
   return (
     <div className="App">
-      <h1>Contador: {counter}</h1>
-      {/* useMemo() is the same thing as useCallback(), but it returns a value instead a function.
-        If the content of the dependencies array don't change, what is inside useMemo() will not
-        re-render. */}
-      {useMemo(
-        () => (
-          <Button incrementFn={incrementFn} />
-        ),
-        [incrementFn],
-      )}
+      <p>
+        <input value={value} onChange={(event) => setValue(event.target.value)} />
+      </p>
+      {/* useMemo() will save the return value and prevent 'Post' from be re-rendered 100 times after the
+      press of each key on the input field.
+        The difference between useMemo() and useCallback() is that useMemo() stores a value, and useCallback()
+      stores a callback. */}
+      {useMemo(() => {
+        return (
+          posts.length > 0 &&
+          posts.map((post) => {
+            return <Post key={post.id} post={post} />;
+          })
+        );
+      }, [posts])}
+      {posts.length === 0 && <p>Loading...</p>}
     </div>
   );
 }
