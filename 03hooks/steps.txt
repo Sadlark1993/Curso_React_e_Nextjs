@@ -14,3 +14,5 @@ npx eslint src/**/*.js --fix
 npm i prop-types
 
 //link to read: https://pt-br.reactjs.org/docs/hooks-state.html
+
+//I removed <react.strictMode> from index.js cause the react 18 is kinda different.
