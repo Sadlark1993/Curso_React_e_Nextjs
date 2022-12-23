@@ -1,10 +1,14 @@
 import { useContext, useEffect, useRef } from 'react';
 import { PostsContext } from '../../contexts/PostsProvider/context';
 import { loadPosts } from '../../contexts/PostsProvider/actions';
+import { CounterContext } from '../../contexts/CounterProvider/context';
+import { increment } from '../../contexts/CounterProvider/actions';
 
 export const Posts = () => {
   const { postsState, postsDispatch } = useContext(PostsContext);
   const isMounted = useRef(true);
+
+  const { counterState, counterDispatch } = useContext(CounterContext);
 
   //with <react.strictMode> in index.js, this app only works with the next line on.
   //isMounted.current = true;
@@ -23,7 +27,7 @@ export const Posts = () => {
 
   return (
     <div>
-      <h1>Posts List:</h1>
+      <h1 onClick={() => increment(counterDispatch)}>Posts List: {counterState.counter}</h1>
       {postsState.loading && <strong>Loading...</strong>}
       {postsState.posts.map((post) => {
         return (
