@@ -9,10 +9,11 @@ const useFetch = (url, options) => {
     setLoading(true);
 
     const fetchData = async () => {
+      console.log(options);
       await new Promise((r) => setTimeout(r, 3000));
 
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, { method: options });
         const jsonResult = await response.json();
         setResult(jsonResult);
         setLoading(false);
@@ -31,7 +32,8 @@ const useFetch = (url, options) => {
 
 export function App() {
   //if I uncomment the {method: 'GET'}, the useFetch will execute several times causing error.
-  const [result, loading] = useFetch('https://jsonplaceholder.typicode.com/posts' /* , { method: 'GET' } */);
+  //hmmmmm, if instead of sending an object, just send the strings that will be assigned to it, it works.
+  const [result, loading] = useFetch('https://jsonplaceholder.typicode.com/posts', 'GET');
 
   if (loading) {
     console.log('loading: true');
