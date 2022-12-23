@@ -31,12 +31,14 @@ const useFetch = (url, options) => {
     //the var wait is to the states don't change when the component is already unmounted
     let wait = false;
     setLoading(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
 
     const fetchData = async () => {
       await new Promise((r) => setTimeout(r, 1000));
 
       try {
-        const response = await fetch(urlRef.current, optionsRef.current);
+        const response = await fetch(urlRef.current, { signal, ...optionsRef.current });
         const jsonResult = await response.json();
 
         if (!wait) {
@@ -45,7 +47,7 @@ const useFetch = (url, options) => {
         }
       } catch (e) {
         if (!wait) setLoading(false);
-        throw e;
+        console.warn('Error: ', e.message);
       }
     };
 
@@ -53,6 +55,7 @@ const useFetch = (url, options) => {
 
     return () => {
       wait = true;
+      controller.abort();
     };
   }, [shouldLoad]);
 
