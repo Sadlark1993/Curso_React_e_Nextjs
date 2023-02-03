@@ -1,62 +1,41 @@
-import { forwardRef, useImperativeHandle, useEffect } from 'react';
-import { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+import { useDebugValue } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-export const App = () => {
-  const [counted, setCounted] = useState([0, 1, 2, 3, 4]);
+const useMediaQuery = (queryValue, initialValue = false) => {
+  const [match, setMatch] = useState(initialValue);
 
-  const divRef = useRef();
+  //if you go to the tab 'components' in the 'inspect' menu, you will see this debug text next to each of these hooks.
+  useDebugValue(`Query ${queryValue}`, (name) => name + ' mediaQuery');
 
-  const handleClick = () => {
-    setCounted((c) => [...c, +c.slice(-1) + 1]);
-    divRef.current.handleClick();
-  };
-
-  //with useLayoutEffect, the DOM will be rendered only after all the changes. So, in this case, the page will freeze before be rendered
-  //with useEffect, the page would freeze for 300 milliseconds while its rendering.
-  //Only use this when you don't have any choice left.
   useEffect(() => {
-    divRef.current.divRef.scrollTop = divRef.current.divRef.scrollHeight;
-  });
+    let isMounted = true;
+    const matchMedia = window.matchMedia(queryValue);
 
-  return (
-    <>
-      <button onClick={handleClick}>Count {counted.slice(-1)} </button>
-      <DisplayContent counted={counted} ref={divRef} />
-    </>
-  );
+    const handleChange = () => {
+      if (!isMounted) return;
+      setMatch(!!matchMedia.matches);
+    };
+
+    matchMedia.addEventListener('change', handleChange);
+    setMatch(!!matchMedia.matches);
+
+    return () => {
+      isMounted = false;
+      matchMedia.removeEventListener('change', handleChange);
+    };
+  }, [queryValue]);
+
+  return match;
 };
 
-//with this, you can save the reference of an element from another react component.
-export const DisplayContent = forwardRef(function DisplayContent({ counted }, ref) {
-  const [rand, setRand] = useState(Math.random().toFixed(2));
+export const App = () => {
+  const huge = useMediaQuery('(min-width: 940px)');
+  const big = useMediaQuery('(min-width: 768px) and (max-width: 939px)');
+  const medium = useMediaQuery('(min-width: 500px) and (max-width: 767px)');
+  const small = useMediaQuery('(max-width: 499px)');
 
-  const divRef = useRef();
+  const background = huge ? 'green' : big ? 'blue' : medium ? 'purple' : small ? 'yellow' : null;
 
-  const handleClick = () => {
-    setRand(Math.random().toFixed(2));
-  };
-
-  //will set the ref.current of the father component with this object.
-  //this is a bad practice. Try not to do it.
-  useImperativeHandle(ref, () => ({
-    handleClick,
-    divRef: divRef.current,
-  }));
-
-  return (
-    <div onClick={handleClick} ref={divRef} style={{ height: '200px', width: '200px', overflow: 'scroll' }}>
-      {counted.map((c) => {
-        return (
-          <p key={`c-${c}`}>
-            {c} +++ {rand}
-          </p>
-        );
-      })}
-    </div>
-  );
-});
-
-DisplayContent.propTypes = {
-  counted: PropTypes.array,
+  return <div style={{ background: background }}>oi</div>;
 };
