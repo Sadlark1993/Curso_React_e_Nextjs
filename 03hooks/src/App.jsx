@@ -1,64 +1,34 @@
-import { useCallback, useEffect, useState, shouldRun } from 'react';
-import './style.css';
+import { useEffect, useLayoutEffect } from 'react';
+import { useState, useRef } from 'react';
 
-const useAsyncFunction = (asyncFunction, shouldRun) => {
-  const [result, setResult] = useState({
-    result: null,
-    error: null,
-    status: 'idle',
+export const App = () => {
+  const [counted, setCounted] = useState([0, 1, 2, 3, 4]);
+
+  const divRef = useRef();
+
+  const handleClick = () => {
+    setCounted((c) => [...c, +c.slice(-1) + 1]);
+    divRef.current.scrollTop = divRef.current.scrollHeight;
+  };
+
+  //with useLayoutEffect, the DOM will be rendered only after all the changes. So, in this case, the page will freeze before be rendered
+  //with useEffect, the page would freeze for 2 seconds while its rendering.
+  //Only use this when you don't have any choice left.
+  useLayoutEffect(() => {
+    const now = Date.now();
+    while (Date.now() < now + 2000)
+      //freezes the page for 2s
+      divRef.current.scrollTop = divRef.current.scrollHeight;
   });
 
-  const run = useCallback(() => {
-    setResult({
-      result: null,
-      error: null,
-      status: 'pending',
-    });
-
-    return asyncFunction()
-      .then((response) => {
-        setResult({ result: response, error: null, status: 'settled' });
-      })
-      .catch((error) => {
-        setResult({ result: null, error: error, status: 'error' });
-      });
-  }, [asyncFunction]);
-
-  useEffect(() => {
-    if (shouldRun) {
-      run();
-    }
-  }, [shouldRun, run]);
-
-  return [run, result.result, result.error, result.status];
+  return (
+    <>
+      <button onClick={handleClick}>Count {counted.slice(-1)} </button>
+      <div ref={divRef} style={{ height: '200px', width: '200px', overflow: 'scroll' }}>
+        {counted.map((c) => {
+          return <p key={`c-${c}`}>{c}</p>;
+        })}
+      </div>
+    </>
+  );
 };
-
-const getData = async () => {
-  const data = await fetch('https://jsonplaceholder.typicode.com/posts');
-  const dataObj = await data.json();
-  return dataObj;
-};
-
-export function App() {
-  const [refetch, result, error, status] = useAsyncFunction(getData, true);
-
-  //disabled eslint no-unused-vars. To it does't keep yelling at me for not be using refetch.
-
-  if (status === 'idle') {
-    return <h3>Ok, nothing to do here...</h3>;
-  } else if (status === 'pending') {
-    return <h3>Loading...</h3>;
-  } else if (status === 'settled') {
-    return <pre>hallo: {JSON.stringify(result, null, 2)}</pre>;
-  } else if (status === 'error') {
-    return (
-      <>
-        <h3>This is a disaster!!!</h3> <p>{error}</p>
-      </>
-    );
-  } else {
-    return <h3> I will quit this job. Excuse-me...</h3>;
-  }
-}
-
-export default App;
