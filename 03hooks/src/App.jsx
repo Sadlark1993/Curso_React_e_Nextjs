@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useLayoutEffect } from 'react';
+import { forwardRef, useImperativeHandle, useEffect } from 'react';
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,16 +9,14 @@ export const App = () => {
 
   const handleClick = () => {
     setCounted((c) => [...c, +c.slice(-1) + 1]);
+    divRef.current.handleClick();
   };
 
   //with useLayoutEffect, the DOM will be rendered only after all the changes. So, in this case, the page will freeze before be rendered
   //with useEffect, the page would freeze for 300 milliseconds while its rendering.
   //Only use this when you don't have any choice left.
-  useLayoutEffect(() => {
-    const now = Date.now();
-    while (Date.now() < now + 300)
-      //freezes the page for 2s
-      divRef.current.scrollTop = divRef.current.scrollHeight;
+  useEffect(() => {
+    divRef.current.divRef.scrollTop = divRef.current.divRef.scrollHeight;
   });
 
   return (
@@ -31,10 +29,29 @@ export const App = () => {
 
 //with this, you can save the reference of an element from another react component.
 export const DisplayContent = forwardRef(function DisplayContent({ counted }, ref) {
+  const [rand, setRand] = useState(Math.random().toFixed(2));
+
+  const divRef = useRef();
+
+  const handleClick = () => {
+    setRand(Math.random().toFixed(2));
+  };
+
+  //will set the ref.current of the father component with this object.
+  //this is a bad practice. Try not to do it.
+  useImperativeHandle(ref, () => ({
+    handleClick,
+    divRef: divRef.current,
+  }));
+
   return (
-    <div ref={ref} style={{ height: '200px', width: '200px', overflow: 'scroll' }}>
+    <div onClick={handleClick} ref={divRef} style={{ height: '200px', width: '200px', overflow: 'scroll' }}>
       {counted.map((c) => {
-        return <p key={`c-${c}`}>{c}</p>;
+        return (
+          <p key={`c-${c}`}>
+            {c} +++ {rand}
+          </p>
+        );
       })}
     </div>
   );
