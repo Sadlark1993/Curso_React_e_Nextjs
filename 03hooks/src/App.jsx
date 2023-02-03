@@ -1,72 +1,91 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export const ReactHooks = () => {
-  console.log('%cCHILD RENDER STARTING...', 'color: green');
+const s = {
+  style: {
+    fontSize: '16px',
+    margin: '20px',
+  },
+};
 
-  // Lazy Initializer #1
-  const [state1, setState1] = useState(() => {
-    const state = new Date().toLocaleDateString();
-    console.log('%cState Lazy initializer - (useState + InitialValue) = ' + state, 'color: green');
-    return state;
-  });
-  const renders = useRef(0);
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    console.log(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Ai Caramba!!</h1>; //will render this, in case of an error.
+    }
+
+    return this.props.children;
+  }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node,
+};
+
+const ItWillThrowError = () => {
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    console.log('%cuseEffect (UPDATE state1) ' + state1, 'color: #dbc70f');
-  }, [state1]);
+    if (number > 3) throw new Error("Hi! I'm an Error.");
+  }, [number]);
 
-  useEffect(() => {
-    console.log('%cuseEffect -> No Dependencies', 'color: #dbc70f');
-    renders.current += 1;
-
-    return () => {
-      console.log('%cuseEffect (Cleanup) -> No Dependencies', 'color: #dbc70f');
-    };
-  });
-
-  useEffect(() => {
-    const listener = () => console.log('Listener...');
-    console.log('%cuseEffect -> Empty dependencies', 'color: #dbc70f');
-
-    return () => {
-      console.log('%cuseEffect (Cleanup) -> Empty dependencies', 'color: #dbc70f');
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    console.log('%cuseLayoutEffect', 'color: #e61a4d');
-
-    return () => {
-      console.log('%cuseLayoutEffect (Cleanup)', 'color: #e61a4d');
-    };
-  });
-
-  console.log('%cCHILD RENDER ' + renders.current + ' ENDING...', 'color: green');
   return (
-    <div onClick={() => setState1(new Date().toLocaleString('pt-br'))} style={{ fontSize: '60px' }}>
-      State: {state1}
-    </div>
+    <button
+      {...s}
+      onClick={() => {
+        setNumber((n) => n + 1);
+      }}
+    >
+      Click to increase {number}
+    </button>
   );
 };
 
 export const App = () => {
-  const renders = useRef(0);
-
-  useEffect(() => {
-    renders.current += 1;
-  });
-
-  console.log(`%cPARENT RENDER ${renders.current} STARTING...`, 'color: green');
-  const [show, setShow] = useState(false);
-  console.log('%cState Initializer - (useState + InitialValue) = ' + show, 'color: green');
-  console.log(`%cPARENT RENDER ${renders.current} ENDING...`, 'color: green');
-
   return (
-    <div>
-      <p style={{ fontSize: '60px' }} onClick={() => setShow((s) => !s)}>
-        Show hooks
-      </p>
-      {show && <ReactHooks />}
-    </div>
+    <>
+      <div>
+        <ErrorBoundary>
+          {/* only what is inside of this will be replaced by the error message */}
+          <ItWillThrowError />
+        </ErrorBoundary>
+      </div>
+      <div>
+        <ErrorBoundary>
+          {/* only what is inside of this will be replaced by the error message */}
+          <ItWillThrowError />
+        </ErrorBoundary>
+      </div>
+      <div>
+        <ErrorBoundary>
+          {/* only what is inside of this will be replaced by the error message */}
+          <ItWillThrowError />
+        </ErrorBoundary>
+      </div>
+      <div>
+        <ErrorBoundary>
+          {/* only what is inside of this will be replaced by the error message */}
+          <ItWillThrowError />
+        </ErrorBoundary>
+      </div>
+    </>
   );
 };
