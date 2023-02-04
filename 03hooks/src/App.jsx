@@ -1,7 +1,6 @@
-//Compound Pattern
-//to insert a JSX element as a child of a compound component:
+//Compound Pattern using useContext.
 
-import { Children, cloneElement, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const s = {
@@ -12,35 +11,43 @@ const s = {
   },
 };
 
+const TurnOnOffContext = createContext();
+
 const TurnOnOff = ({ children }) => {
   const [itsOn, setItsOn] = useState(false);
   const onToggle = () => setItsOn((i) => !i);
-  return Children.map(children, (child) => {
-    if (typeof child.type === 'string') return child; //that*
-    const newChild = cloneElement(child, { s, itsOn, onToggle });
-    return newChild;
-  });
+
+  return <TurnOnOffContext.Provider value={{ itsOn, onToggle }}>{children}</TurnOnOffContext.Provider>;
+};
+TurnOnOff.propTypes = {
+  children: PropTypes.node,
 };
 
-const TurnedOn = ({ itsOn, children, s }) => (itsOn ? <p {...s}> {children} </p> : null);
+const TurnedOn = ({ children }) => {
+  const { itsOn } = useContext(TurnOnOffContext);
+  return itsOn ? <p {...s}> {children} </p> : null;
+};
 TurnedOn.propTypes = {
-  itsOn: PropTypes.bool,
   children: PropTypes.node,
-  s: PropTypes.object,
 };
 
-const TurnedOff = ({ itsOn, children, s }) => (itsOn ? null : <p {...s}>{children}</p>);
+const TurnedOff = ({ children }) => {
+  const { itsOn } = useContext(TurnOnOffContext);
+  return itsOn ? null : <p {...s}>{children}</p>;
+};
 TurnedOff.propTypes = {
-  itsOn: PropTypes.bool,
   children: PropTypes.node,
-  s: PropTypes.object,
 };
 
-const ToggleButton = ({ itsOn, onToggle }) => (
-  <button {...s} onClick={onToggle}>
-    Toggle: {itsOn ? 'ON' : 'OFF'}
-  </button>
-);
+const ToggleButton = () => {
+  const { itsOn, onToggle } = useContext(TurnOnOffContext);
+
+  return (
+    <button {...s} onClick={onToggle}>
+      Toggle: {itsOn ? 'ON' : 'OFF'}
+    </button>
+  );
+};
 ToggleButton.propTypes = {
   itsOn: PropTypes.bool,
   children: PropTypes.node,
@@ -51,10 +58,12 @@ export const App = () => {
   return (
     //to insert a JSX element here, you'll need to do that*
     <TurnOnOff>
-      <TurnedOn>This thing shows that it&apos;s turned on</TurnedOn>
-      <TurnedOff>Oh! It&apos;s so dark down here!</TurnedOff>
-      <p style={{ margin: '10px' }}>I&apos;m just a P, never mind.</p>
-      <ToggleButton />
+      <div>
+        <TurnedOn>This thing shows that it&apos;s turned on</TurnedOn>
+        <TurnedOff>Oh! It&apos;s so dark down here!</TurnedOff>
+        <p style={{ margin: '10px' }}>I&apos;m just a P, never mind.</p>
+        <ToggleButton />
+      </div>
     </TurnOnOff>
   );
 };
