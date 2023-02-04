@@ -1,91 +1,26 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+//inheritance of styles
+import { Children, cloneElement } from 'react';
 
 const s = {
+  //atributes that will be inserted in the elements.
   style: {
-    fontSize: '16px',
-    margin: '20px',
+    margin: '10px',
+    fontSize: '1,8em',
   },
 };
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    console.log(error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Ai Caramba!!</h1>; //will render this, in case of an error.
-    }
-
-    return this.props.children;
-  }
-}
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.node,
-};
-
-const ItWillThrowError = () => {
-  const [number, setNumber] = useState(0);
-
-  useEffect(() => {
-    if (number > 3) throw new Error("Hi! I'm an Error.");
-  }, [number]);
-
-  return (
-    <button
-      {...s}
-      onClick={() => {
-        setNumber((n) => n + 1);
-      }}
-    >
-      Click to increase {number}
-    </button>
-  );
+const Parent = ({ children }) => {
+  return Children.map(children, (child) => {
+    const newChild = cloneElement(child, { ...s, data_number: 25 });
+    return newChild;
+  });
 };
 
 export const App = () => {
   return (
-    <>
-      <div>
-        <ErrorBoundary>
-          {/* only what is inside of this will be replaced by the error message */}
-          <ItWillThrowError />
-        </ErrorBoundary>
-      </div>
-      <div>
-        <ErrorBoundary>
-          {/* only what is inside of this will be replaced by the error message */}
-          <ItWillThrowError />
-        </ErrorBoundary>
-      </div>
-      <div>
-        <ErrorBoundary>
-          {/* only what is inside of this will be replaced by the error message */}
-          <ItWillThrowError />
-        </ErrorBoundary>
-      </div>
-      <div>
-        <ErrorBoundary>
-          {/* only what is inside of this will be replaced by the error message */}
-          <ItWillThrowError />
-        </ErrorBoundary>
-      </div>
-    </>
+    <Parent>
+      <p>First Element</p>
+      <p>Second Element</p>
+    </Parent>
   );
 };
