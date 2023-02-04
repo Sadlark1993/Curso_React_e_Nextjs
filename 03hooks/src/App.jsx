@@ -1,4 +1,5 @@
 //Compound Pattern
+//to insert a JSX element as a child of a compound component:
 
 import { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -15,6 +16,7 @@ const TurnOnOff = ({ children }) => {
   const [itsOn, setItsOn] = useState(false);
   const onToggle = () => setItsOn((i) => !i);
   return Children.map(children, (child) => {
+    if (typeof child.type === 'string') return child; //that*
     const newChild = cloneElement(child, { s, itsOn, onToggle });
     return newChild;
   });
@@ -47,9 +49,11 @@ ToggleButton.propTypes = {
 
 export const App = () => {
   return (
+    //to insert a JSX element here, you'll need to do that*
     <TurnOnOff>
       <TurnedOn>This thing shows that it&apos;s turned on</TurnedOn>
       <TurnedOff>Oh! It&apos;s so dark down here!</TurnedOff>
+      <p style={{ margin: '10px' }}>I&apos;m just a P, never mind.</p>
       <ToggleButton />
     </TurnOnOff>
   );
