@@ -1,0 +1,48 @@
+//create an account on elephantsql.com
+//create an account on strapi
+//create an account on cloudinary
+
+
+npx create-strapi-app .
+//use custom install, insert the right datas from elephantsql.com
+
+/*
+  in ./config/database are de datas of your BD. Replace the values for random
+  values like localhost, root, pass123...
+
+  the true values must be placed in .env document just like this:
+
+  DATABASE_HOST=blabla.blabla
+  DATABASE_PORT=5432
+  ...
+
+  in ./config/database, insert pool with min=0 and max=5:
+
+export default ({ env }) => ({
+  connection: {
+    client: 'postgres',
+    connection: {
+      host: env('DATABASE_HOST', 'localhost'),
+      port: env.int('DATABASE_PORT', 5432),
+      database: env('DATABASE_NAME', 'database'),
+      user: env('DATABASE_USERNAME', 'hoot'),
+      password: env('DATABASE_PASSWORD', ''),
+      ssl: env.bool('DATABASE_SSL', false),
+    },
+    pool: {
+      min: 0,
+      max: 5,
+    }
+  },
+});
+
+*/
+
+npm run develop
+
+//sign up your admin user datas
+
+//integrate cloudinary to strapi by folowing the tutorial:
+https://github.com/strapi/strapi/tree/master/packages/providers/upload-cloudinary
+
+//I can be forgetting something... if its so, I'm sorry.

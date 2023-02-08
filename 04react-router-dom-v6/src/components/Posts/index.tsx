@@ -1,4 +1,4 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, Outlet, useParams, useSearchParams } from "react-router-dom";
 
 export const Posts = () => {
 	const params = useParams();
@@ -12,6 +12,7 @@ export const Posts = () => {
 				{qs.get("page") ? `qs.page: ${qs.get("page")}` : ""}
 			</h1>
 			<Link to={`/posts/${id}?page=18`}>Page 18</Link>
+			<Outlet />
 		</div>
 	);
 };
