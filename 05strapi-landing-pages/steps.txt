@@ -12,7 +12,7 @@ npx create-strapi-app .
 
   the true values must be placed in .env document just like this:
 
-  DATABASE_HOST=blabla.blabla
+  DATABASE_HOST=any.any.com
   DATABASE_PORT=5432
   ...
 
@@ -42,7 +42,31 @@ npm run develop
 
 //sign up your admin user datas
 
-//integrate cloudinary to strapi by folowing the tutorial:
+//integrate cloudinary to strapi by following the tutorial:
 https://github.com/strapi/strapi/tree/master/packages/providers/upload-cloudinary
 
 //I can be forgetting something... if its so, I'm sorry.
+
+//Lesson 2:
+
+//Log on your strapi --> host http://localhost:1337/
+//in content-type builder, create a new collection type
+
+//Now, we'll start landing this website on strapi: https://landingpagecursojs.netlify.app/#grid-one
+
+/*
+I've started by creating a collection type named pages, and then, adding two fields to this collection,
+title [text] and slug [UID]. Click in save.
+*/
+
+//create a component called section_metadata. It has title [text], id[text] and background [boolean]
+/*created a dynamic zone to the page that has title, description and image, and added the section_metadata
+to this component*/
+
+//created component text-grid, that has a title and a description;
+//created component image-grid, that has an image;
+/*created component section-grid, that has title, description, component text-grid, component image grid
+both repeatable*/
+
+/*in content manager, created a new page, and built sections home and grid-two using the
+already created components (it's a CMS) */
