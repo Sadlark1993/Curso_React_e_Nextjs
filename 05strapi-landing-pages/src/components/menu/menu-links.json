@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_menu_menu_links",
+  "info": {
+    "displayName": "menu_links"
+  },
+  "options": {},
+  "attributes": {
+    "menu_text": {
+      "type": "string",
+      "required": true
+    },
+    "menu_url": {
+      "type": "text",
+      "required": true
+    },
+    "open_new_tab": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

@@ -69,4 +69,8 @@ to this component*/
 both repeatable*/
 
 /*in content manager, created a new page, and built sections home and grid-two using the
-already created components (it's a CMS) */
+already created components (it's a CMS)
+keep doing this till you finish your CMS.
+*/
+
+//update .env.exemple: copy the text of .env to .env.exemple, and change the sensible values for 'change-me'.
