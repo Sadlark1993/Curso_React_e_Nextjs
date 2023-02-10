@@ -1,0 +1,6 @@
+npx create-react-app .
+//copy devDependencies of package.json of your previous project to this one;
+//copy .prettierrc.js, eslintrc.js and .editorconfig from your previous...
+npm i    //install dependencies.
+npx eslint src/**/*.js --fix
+npx eslint src/**/*.jsx --fix
