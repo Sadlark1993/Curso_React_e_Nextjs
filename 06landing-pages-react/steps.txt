@@ -6,3 +6,5 @@ npx eslint src/**/*.js --fix
 npx eslint src/**/*.jsx --fix
 
 npm i styled-components
+
+npm i -D jest-styled-components
