@@ -74,3 +74,11 @@ keep doing this till you finish your CMS.
 */
 
 //update .env.exemple: copy the text of .env to .env.exemple, and change the sensible values for 'change-me'.
+
+/*in  settings -> roles & permissions plugin -> roles, I've set the permissions find and find one
+for the public role */
+//to access the api, jus use the adicional url's path: /api/pages for find or /api/pages/:id for find one.
+//you'll need to install a plugin to make the api to be fully populated easily:
+npm install strapi-plugin-populate-deep
+//the adicional url's path to the populated api: /api/pages?populate=deep
+//my full url: http://localhost:1337/api/pages?populate=deep
