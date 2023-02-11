@@ -6,6 +6,11 @@ export const theme = {
     boom: '#504b78',
     white: 'white',
   },
-  fonts: {},
+  fonts: {
+    family: {
+      default: "'Open Sans', sans-serif",
+      secondary: "'Montserrat', sans-serif",
+    },
+  },
   spacings: {},
 };
