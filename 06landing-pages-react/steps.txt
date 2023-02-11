@@ -8,3 +8,10 @@ npx eslint src/**/*.jsx --fix
 npm i styled-components
 
 npm i -D jest-styled-components
+
+npx sb init //storybook
+//deleted the folder stories
+//in file .storybook/main.js, added "../src/**/stories.@(js|jsx|ts|tsx)" in array "stories".
+
+//after crate your storybook,
+npm run storybook
