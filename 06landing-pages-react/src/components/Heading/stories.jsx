@@ -5,11 +5,11 @@ export default {
   component: Heading,
   args: {
     children: 'The text is dark.',
-    lightT: false,
+    uppercase: false,
   },
   argTypes: {
     children: { type: 'string' },
-    lightT: { type: 'boolean' },
+    uppercase: { type: 'boolean' },
   },
   parameters: {
     backgrounds: {
@@ -29,5 +29,5 @@ Light.parameters = {
 
 Dark.args = {
   children: 'The text is light.',
-  lightT: true,
+  darkTitle: false,
 };

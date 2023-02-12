@@ -2,7 +2,6 @@ import { createGlobalStyle, css } from 'styled-components';
 import { theme } from './themes';
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Open+Sans:ital@0;1&display=swap');
 
   ${'' /* reset-start */}
 
@@ -10,6 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     text-decoration: none;
+    box-sizing: border-box;
   };
 
   ul {
@@ -28,7 +28,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${theme.fonts.family.default}
   }
 
-  h1 {
-    font-family: ${theme.fonts.family.secondary}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: ${theme.fonts.family.secondary};
+    font-weight: 900;
   }
 `;
