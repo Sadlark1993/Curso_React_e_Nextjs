@@ -15,3 +15,6 @@ npx sb init //storybook
 
 //after crate your storybook,
 npm run storybook
+
+//test coverage
+npm test -- --watchAll="false" --coverage
