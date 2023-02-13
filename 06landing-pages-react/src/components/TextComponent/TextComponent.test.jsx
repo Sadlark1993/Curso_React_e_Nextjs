@@ -6,7 +6,7 @@ import { theme } from '../../styles/themes';
 describe('<TextComponent />', () => {
   it('Should render', () => {
     const { debug } = renderTheme(<TextComponent>Children</TextComponent>);
-    debug();
+    /* debug(); */
     const text = screen.getByText('Children');
     expect(text).toBeInTheDocument();
 
