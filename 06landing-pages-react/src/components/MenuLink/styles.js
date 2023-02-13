@@ -14,7 +14,7 @@ export const linkStyle = styled.a`
       width: 0%;
       height: 0.2rem;
       background: ${theme.colors.secondaryColor};
-      margin: 10px auto;
+      margin: 1rem auto;
       transition: all 300ms ease-in-out;
     }
 
