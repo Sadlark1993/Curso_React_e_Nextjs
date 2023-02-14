@@ -15,4 +15,9 @@ describe('<LogoLink />', () => {
       'image.jpg',
     );
   });
+
+  it('Should match snapshot', () => {
+    const { container } = renderTheme(<LogoLink link="#" text="hallo world" srcImg="image.jpg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
