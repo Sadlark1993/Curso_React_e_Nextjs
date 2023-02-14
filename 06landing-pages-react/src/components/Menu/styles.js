@@ -2,8 +2,13 @@ import styled, { css } from 'styled-components';
 import { ContainerStyle } from '../SectionContainer/styles';
 import { titleStyle } from '../Heading/styles';
 
+const menuVisible = (theme) => css`
+  visibility: visible;
+  opacity: 1;
+`;
+
 export const MenuStyle = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, visible }) => css`
     position: fixed;
     z-index: 5;
     top: 0;
@@ -11,6 +16,7 @@ export const MenuStyle = styled.div`
     right: 0;
     border-bottom: ${theme.colors.mediumGray};
     background: ${theme.colors.white};
+    transition: all 300ms ease-in-out;
 
     /* Changing css properties of the ContainerStyle when it's child of MenuStyle */
     > ${ContainerStyle} {
@@ -25,6 +31,10 @@ export const MenuStyle = styled.div`
 
     @media ${theme.media.mobile} {
       height: 100vh;
+      /* same as display:none, except for the fact that with this, we can use transition. */
+      visibility: hidden;
+      opacity: 0;
+      ${visible && menuVisible(theme)};
 
       /* Changing css properties of the ContainerStyle when it's child of MenuStyle */
       > ${ContainerStyle} {
@@ -60,5 +70,29 @@ export const MenuStyle2 = styled.div`
 `;
 
 export const Button = styled.button`
-  ${({ theme }) => css``}
+  ${({ theme, visible }) => css`
+    z-index: 6;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    background: ${theme.colors.primaryColor};
+    color: ${theme.colors.white};
+    border: none;
+    display: none;
+    /* if menu is visible, this block don't captures the pointer actions. */
+    pointer-events: ${visible ? 'none' : 'all'};
+
+    @media ${theme.media.mobile} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    > svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  `}
 `;

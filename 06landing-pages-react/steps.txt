@@ -18,3 +18,6 @@ npm run storybook
 
 //test coverage
 npm test -- --watchAll="false" --coverage
+
+//install icons library
+npm i @styled-icons/material-outlined
