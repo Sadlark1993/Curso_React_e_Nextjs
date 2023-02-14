@@ -19,7 +19,7 @@ export default [
     link: '#target4',
     newTab: false,
   },
-  {
+  /* {
     children: 'Link 5',
     link: '#target5',
     newTab: false,
@@ -48,5 +48,5 @@ export default [
     children: 'Link 10',
     link: '#target10',
     newTab: false,
-  },
+  }, */
 ];
