@@ -46,6 +46,7 @@ exports[`<NavBar /> Should render match snapshot 1`] = `
 }
 
 <nav
+  aria-label="Main menu"
   class="c0"
 >
   <a
@@ -75,48 +76,6 @@ exports[`<NavBar /> Should render match snapshot 1`] = `
     target="_self"
   >
     Link 4
-  </a>
-  <a
-    class="c1"
-    href="#target5"
-    target="_self"
-  >
-    Link 5
-  </a>
-  <a
-    class="c1"
-    href="#target6"
-    target="_self"
-  >
-    Link 6
-  </a>
-  <a
-    class="c1"
-    href="#target7"
-    target="_self"
-  >
-    Link 7
-  </a>
-  <a
-    class="c1"
-    href="#target8"
-    target="_self"
-  >
-    Link 8
-  </a>
-  <a
-    class="c1"
-    href="#target9"
-    target="_self"
-  >
-    Link 9
-  </a>
-  <a
-    class="c1"
-    href="#target10"
-    target="_self"
-  >
-    Link 10
   </a>
 </nav>
 `;
