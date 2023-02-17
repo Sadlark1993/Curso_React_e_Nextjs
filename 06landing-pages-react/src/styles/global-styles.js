@@ -32,4 +32,17 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${theme.fonts.family.secondary};
     font-weight: 900;
   }
+
+  p {
+    margin: ${({ theme }) => theme.spacing.medium} 0;
+  }
+
+  ul, ol{
+    margin: ${({ theme }) => theme.spacing.medium} 0;
+    padding: ${({ theme }) => theme.spacing.medium} 0;
+  }
+
+  a{
+    color: ${({ theme }) => theme.colors.sakuraz};
+  }
 `;
