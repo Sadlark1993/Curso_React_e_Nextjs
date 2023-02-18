@@ -57,11 +57,11 @@ exports[`<GridContent /> Should render GridContent 1`] = `
       <div
         class="c2"
       >
-        <h1
+        <h2
           class="c3"
         >
           A Random Title
-        </h1>
+        </h2>
         <div
           class="c4"
         >
@@ -222,11 +222,11 @@ exports[`<GridContent /> Should render GridContent 2`] = `
       <div
         class="c2"
       >
-        <h1
+        <h2
           class="c3"
         >
           A Random Title
-        </h1>
+        </h2>
         <div
           class="c4"
         >
