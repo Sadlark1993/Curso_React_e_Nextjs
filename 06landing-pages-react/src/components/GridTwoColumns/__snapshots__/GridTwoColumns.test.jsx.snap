@@ -82,11 +82,11 @@ exports[`<GridTwoColumns /> Should render GridTwoColumns 1`] = `
             Grid Two Columns
              
           </h2>
-          <p
+          <div
             class="c6"
           >
             Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-          </p>
+          </div>
         </div>
         <div
           class=""
