@@ -16,6 +16,13 @@ export const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: ${theme.spacing.large};
+    width: 100%;
+    overflow: hidden;
+    padding: ${theme.spacing.small};
+
+    @media ${theme.media.mobile} {
+      grid-template-columns: 1fr;
+    }
   `}
 `;
 
