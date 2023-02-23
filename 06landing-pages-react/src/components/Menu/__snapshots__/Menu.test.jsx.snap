@@ -331,10 +331,13 @@ exports[`<Menu /> Should render Logo and nav bar 1`] = `
   margin: 1rem auto;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
+  position: absolute;
+  left: 50%;
 }
 
 .c10:hover::after {
-  width: 70%;
+  width: 50%;
+  left: 25%;
 }
 
 .c1 {
