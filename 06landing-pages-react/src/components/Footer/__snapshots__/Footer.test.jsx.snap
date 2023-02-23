@@ -1,18 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Footer /> Should render Footer 1`] = `
+.c3 {
+  font-size: 2.4rem;
+}
+
 .c0 {
   text-align: center;
 }
 
 .c0 a {
   color: inherit;
-  font-size: 1.6rem;
   text-align: center;
 }
 
-.c2 {
-  font-size: 2.4rem;
+.c0 .c2 {
+  font-size: 1.6rem;
 }
 
 .c1 {
@@ -29,7 +32,7 @@ exports[`<Footer /> Should render Footer 1`] = `
       class="c1"
     >
       <div
-        class="c2"
+        class="c2 c3"
       >
         <h1>
           Olá

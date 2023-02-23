@@ -16,10 +16,13 @@ export const linkStyle = styled.a`
       background: ${theme.colors.secondaryColor};
       margin: 1rem auto;
       transition: all 300ms ease-in-out;
+      position: absolute;
+      left: 50%;
     }
 
     &:hover::after {
-      width: 70%;
+      width: 50%;
+      left: 25%;
     }
   `}
 `;
