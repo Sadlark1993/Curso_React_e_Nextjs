@@ -1,4 +1,5 @@
-import { mapSectionContent, mapSections, mapSectionTwoColumns } from './map-sections';
+/* cspell:disable */
+import { mapSectionContent, mapSections, mapSectionTwoColumns, mapTextGrid } from './map-sections';
 
 describe('map-sections', () => {
   it('should return [] when no data is sent', () => {
@@ -100,5 +101,78 @@ describe('map-sections', () => {
     );
     expect(data.sectionId).toBe('intro');
     expect(data.title).toBe('NEWS COVERAGE AND SOME SURPRISES');
+  });
+
+  it('should map text-grid when no data is sent', () => {
+    const data = mapTextGrid();
+
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('section.section-grid');
+    expect(data.description).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.grid).toEqual([]);
+  });
+
+  it('should map the given datas to text-grid', () => {
+    const data = mapTextGrid({
+      id: 1,
+      __component: 'section.section-grid',
+      Title: 'MY GRID',
+      description: 'Uma breve descrição.',
+      metadata: {
+        id: 2,
+        name: 'grid-one',
+        section_id: 'grid-one',
+        background: true,
+      },
+      text_grid: [
+        {
+          id: 1,
+          title: 'Teste 1',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+        },
+        {
+          id: 2,
+          title: 'Teste 2',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+        },
+        {
+          id: 3,
+          title: 'Teste 3',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+        },
+      ],
+      image_grid: [],
+    });
+
+    expect(data.background).toBe(true);
+    expect(data.component).toBe('section.section-grid');
+    expect(data.description).toBe('Uma breve descrição.');
+    expect(data.sectionId).toBe('grid-one');
+    expect(data.title).toBe('MY GRID');
+    expect(data.grid).toEqual([
+      {
+        id: 1,
+        title: 'Teste 1',
+        description:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+      },
+      {
+        id: 2,
+        title: 'Teste 2',
+        description:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+      },
+      {
+        id: 3,
+        title: 'Teste 3',
+        description:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
+      },
+    ]);
   });
 });

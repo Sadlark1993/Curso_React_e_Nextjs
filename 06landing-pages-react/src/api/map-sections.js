@@ -1,3 +1,4 @@
+/* cspell:disable */
 export const mapSections = (sections = []) => {
   return sections.map((section) => {
     if (section.__component === 'section.section-two-columns') {
@@ -5,7 +6,14 @@ export const mapSections = (sections = []) => {
     } else if (section.__component === 'section.section-content') {
       return mapSectionContent(section);
     } else if (section.__component === 'section.section-grid') {
-      return mapSectionGrid(section);
+      const { __component: { text_grid = [], image_grid = [] } = null } = section;
+
+      if (text_grid.lenth > 0) {
+        return mapTextGrid(section);
+      }
+      if (image_grid.lengh > 0) {
+        return mapImageGrid(section);
+      }
     }
 
     return section;
@@ -72,6 +80,57 @@ export const mapSectionContent = (section = {}) => {
   };
 };
 
-export const mapSectionGrid = (section) => {
+export const mapTextGrid = (section = {}) => {
+  /*
+    {
+      "id": 1,
+      "__component": "section.section-grid",
+      "Title": "MY GRID",
+      "description": "Uma breve descrição.",
+      "metadata": {
+        "id": 2,
+        "name": "grid-one",
+        "section_id": "grid-one",
+        "background": true
+      },
+      "text_grid": [
+        {
+          "id": 1,
+          "title": "Teste 1",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n"
+        },
+        {
+          "id": 2,
+          "title": "Teste 2",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n"
+        },
+        {
+          "id": 3,
+          "title": "Teste 3",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n"
+        }
+      ],
+      "image_grid": []
+    }
+  */
+
+  const {
+    __component: component = 'section.section-grid',
+    Title: title = '',
+    description = '',
+    text_grid: grid = [],
+    metadata: { background = false, section_id: sectionId = '' } = '',
+  } = section;
+  return {
+    component,
+    title,
+    description,
+    grid,
+    background,
+    sectionId,
+  };
+};
+
+export const mapImageGrid = (section) => {
   return section;
 };
