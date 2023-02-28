@@ -1,5 +1,5 @@
 /* cspell:disable */
-import { mapSectionContent, mapSections, mapSectionTwoColumns, mapTextGrid } from './map-sections';
+import { mapImageGrid, mapSectionContent, mapSections, mapSectionTwoColumns, mapTextGrid } from './map-sections';
 
 describe('map-sections', () => {
   it('should return [] when no data is sent', () => {
@@ -107,7 +107,7 @@ describe('map-sections', () => {
     const data = mapTextGrid();
 
     expect(data.background).toBe(false);
-    expect(data.component).toBe('section.section-grid');
+    expect(data.component).toBe('section.section-grid-text');
     expect(data.description).toBe('');
     expect(data.sectionId).toBe('');
     expect(data.title).toBe('');
@@ -150,7 +150,7 @@ describe('map-sections', () => {
     });
 
     expect(data.background).toBe(true);
-    expect(data.component).toBe('section.section-grid');
+    expect(data.component).toBe('section.section-grid-text');
     expect(data.description).toBe('Uma breve descrição.');
     expect(data.sectionId).toBe('grid-one');
     expect(data.title).toBe('MY GRID');
@@ -174,5 +174,321 @@ describe('map-sections', () => {
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
       },
     ]);
+  });
+
+  it('should map gid-image when no data is passed as argument', () => {
+    const data = mapImageGrid();
+
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('section.section-grid-image');
+    expect(data.description).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.grid).toEqual([]);
+  });
+
+  it('should map the given data to grid-image', () => {
+    const data = mapImageGrid({
+      id: 2,
+      __component: 'section.section-grid',
+      Title: 'Gallery',
+      description: 'Its a Gallery',
+      metadata: {
+        id: 4,
+        name: 'gallery',
+        section_id: 'gallery',
+        background: false,
+      },
+      text_grid: [],
+      image_grid: [
+        {
+          id: 4,
+          image: {
+            data: [
+              {
+                id: 1,
+                attributes: {
+                  name: 'fire2.jpg',
+                  alternativeText: null,
+                  caption: null,
+                  width: 2304,
+                  height: 3456,
+                  formats: {
+                    large: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg',
+                      hash: 'large_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'large_fire2.jpg',
+                      path: null,
+                      size: 85.12,
+                      width: 667,
+                      height: 1000,
+                      provider_metadata: {
+                        public_id: 'large_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    small: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg',
+                      hash: 'small_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'small_fire2.jpg',
+                      path: null,
+                      size: 28.6,
+                      width: 333,
+                      height: 500,
+                      provider_metadata: {
+                        public_id: 'small_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    medium: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg',
+                      hash: 'medium_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'medium_fire2.jpg',
+                      path: null,
+                      size: 54.05,
+                      width: 500,
+                      height: 750,
+                      provider_metadata: {
+                        public_id: 'medium_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    thumbnail: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg',
+                      hash: 'thumbnail_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'thumbnail_fire2.jpg',
+                      path: null,
+                      size: 4.83,
+                      width: 104,
+                      height: 156,
+                      provider_metadata: {
+                        public_id: 'thumbnail_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                  },
+                  hash: 'fire2_c3432a04b9',
+                  ext: '.jpg',
+                  mime: 'image/jpeg',
+                  size: 1035.25,
+                  url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg',
+                  previewUrl: null,
+                  provider: 'cloudinary',
+                  provider_metadata: {
+                    public_id: 'fire2_c3432a04b9',
+                    resource_type: 'image',
+                  },
+                  createdAt: '2023-02-08T00:04:34.559Z',
+                  updatedAt: '2023-02-28T06:42:43.253Z',
+                },
+              },
+            ],
+          },
+        },
+        {
+          id: 5,
+          image: {
+            data: [
+              {
+                id: 1,
+                attributes: {
+                  name: 'fire2.jpg',
+                  alternativeText: null,
+                  caption: null,
+                  width: 2304,
+                  height: 3456,
+                  formats: {
+                    large: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg',
+                      hash: 'large_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'large_fire2.jpg',
+                      path: null,
+                      size: 85.12,
+                      width: 667,
+                      height: 1000,
+                      provider_metadata: {
+                        public_id: 'large_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    small: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg',
+                      hash: 'small_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'small_fire2.jpg',
+                      path: null,
+                      size: 28.6,
+                      width: 333,
+                      height: 500,
+                      provider_metadata: {
+                        public_id: 'small_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    medium: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg',
+                      hash: 'medium_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'medium_fire2.jpg',
+                      path: null,
+                      size: 54.05,
+                      width: 500,
+                      height: 750,
+                      provider_metadata: {
+                        public_id: 'medium_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    thumbnail: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg',
+                      hash: 'thumbnail_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'thumbnail_fire2.jpg',
+                      path: null,
+                      size: 4.83,
+                      width: 104,
+                      height: 156,
+                      provider_metadata: {
+                        public_id: 'thumbnail_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                  },
+                  hash: 'fire2_c3432a04b9',
+                  ext: '.jpg',
+                  mime: 'image/jpeg',
+                  size: 1035.25,
+                  url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg',
+                  previewUrl: null,
+                  provider: 'cloudinary',
+                  provider_metadata: {
+                    public_id: 'fire2_c3432a04b9',
+                    resource_type: 'image',
+                  },
+                  createdAt: '2023-02-08T00:04:34.559Z',
+                  updatedAt: '2023-02-28T06:42:43.253Z',
+                },
+              },
+            ],
+          },
+        },
+        {
+          id: 6,
+          image: {
+            data: [
+              {
+                id: 1,
+                attributes: {
+                  name: 'fire2.jpg',
+                  alternativeText: null,
+                  caption: null,
+                  width: 2304,
+                  height: 3456,
+                  formats: {
+                    large: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg',
+                      hash: 'large_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'large_fire2.jpg',
+                      path: null,
+                      size: 85.12,
+                      width: 667,
+                      height: 1000,
+                      provider_metadata: {
+                        public_id: 'large_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    small: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg',
+                      hash: 'small_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'small_fire2.jpg',
+                      path: null,
+                      size: 28.6,
+                      width: 333,
+                      height: 500,
+                      provider_metadata: {
+                        public_id: 'small_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    medium: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg',
+                      hash: 'medium_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'medium_fire2.jpg',
+                      path: null,
+                      size: 54.05,
+                      width: 500,
+                      height: 750,
+                      provider_metadata: {
+                        public_id: 'medium_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                    thumbnail: {
+                      ext: '.jpg',
+                      url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg',
+                      hash: 'thumbnail_fire2_c3432a04b9',
+                      mime: 'image/jpeg',
+                      name: 'thumbnail_fire2.jpg',
+                      path: null,
+                      size: 4.83,
+                      width: 104,
+                      height: 156,
+                      provider_metadata: {
+                        public_id: 'thumbnail_fire2_c3432a04b9',
+                        resource_type: 'image',
+                      },
+                    },
+                  },
+                  hash: 'fire2_c3432a04b9',
+                  ext: '.jpg',
+                  mime: 'image/jpeg',
+                  size: 1035.25,
+                  url: 'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg',
+                  previewUrl: null,
+                  provider: 'cloudinary',
+                  provider_metadata: {
+                    public_id: 'fire2_c3432a04b9',
+                    resource_type: 'image',
+                  },
+                  createdAt: '2023-02-08T00:04:34.559Z',
+                  updatedAt: '2023-02-28T06:42:43.253Z',
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    expect(data.background).toBe(false);
+    expect(data.component).toBe('section.section-grid-image');
+    expect(data.description).toBe('Its a Gallery');
+    expect(data.sectionId).toBe('gallery');
+    expect(data.title).toBe('Gallery');
+    expect(data.grid[0].srcImg).toBe(
+      'https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg',
+    );
+    expect(data.grid[0].altText).toBe(null);
+    expect(data.grid).toHaveLength(3);
   });
 });

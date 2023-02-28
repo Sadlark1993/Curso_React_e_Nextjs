@@ -5,7 +5,7 @@
       "title": "Landing Page",
       "slug": "landing-page",
       "createdAt": "2023-02-08T02:55:27.200Z",
-      "updatedAt": "2023-02-09T23:25:26.869Z",
+      "updatedAt": "2023-02-28T07:00:38.103Z",
       "publishedAt": "2023-02-08T02:55:52.808Z",
       "footer_text": "Feito com ❤ por Otávio Miranda",
       "sections": [
@@ -89,6 +89,299 @@
           ],
           "image_grid": [
 
+          ]
+        },
+        {
+          "id": 2,
+          "__component": "section.section-grid",
+          "Title": "Gallery",
+          "description": "Its a Gallery",
+          "metadata": {
+            "id": 4,
+            "name": "gallery",
+            "section_id": "gallery",
+            "background": false
+          },
+          "text_grid": [
+
+          ],
+          "image_grid": [
+            {
+              "id": 4,
+              "image": {
+                "data": [
+                  {
+                    "id": 1,
+                    "attributes": {
+                      "name": "fire2.jpg",
+                      "alternativeText": null,
+                      "caption": null,
+                      "width": 2304,
+                      "height": 3456,
+                      "formats": {
+                        "large": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg",
+                          "hash": "large_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "large_fire2.jpg",
+                          "path": null,
+                          "size": 85.12,
+                          "width": 667,
+                          "height": 1000,
+                          "provider_metadata": {
+                            "public_id": "large_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "small": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg",
+                          "hash": "small_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "small_fire2.jpg",
+                          "path": null,
+                          "size": 28.6,
+                          "width": 333,
+                          "height": 500,
+                          "provider_metadata": {
+                            "public_id": "small_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "medium": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg",
+                          "hash": "medium_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "medium_fire2.jpg",
+                          "path": null,
+                          "size": 54.05,
+                          "width": 500,
+                          "height": 750,
+                          "provider_metadata": {
+                            "public_id": "medium_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "thumbnail": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg",
+                          "hash": "thumbnail_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "thumbnail_fire2.jpg",
+                          "path": null,
+                          "size": 4.83,
+                          "width": 104,
+                          "height": 156,
+                          "provider_metadata": {
+                            "public_id": "thumbnail_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        }
+                      },
+                      "hash": "fire2_c3432a04b9",
+                      "ext": ".jpg",
+                      "mime": "image/jpeg",
+                      "size": 1035.25,
+                      "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg",
+                      "previewUrl": null,
+                      "provider": "cloudinary",
+                      "provider_metadata": {
+                        "public_id": "fire2_c3432a04b9",
+                        "resource_type": "image"
+                      },
+                      "createdAt": "2023-02-08T00:04:34.559Z",
+                      "updatedAt": "2023-02-28T06:42:43.253Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": 5,
+              "image": {
+                "data": [
+                  {
+                    "id": 1,
+                    "attributes": {
+                      "name": "fire2.jpg",
+                      "alternativeText": null,
+                      "caption": null,
+                      "width": 2304,
+                      "height": 3456,
+                      "formats": {
+                        "large": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg",
+                          "hash": "large_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "large_fire2.jpg",
+                          "path": null,
+                          "size": 85.12,
+                          "width": 667,
+                          "height": 1000,
+                          "provider_metadata": {
+                            "public_id": "large_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "small": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg",
+                          "hash": "small_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "small_fire2.jpg",
+                          "path": null,
+                          "size": 28.6,
+                          "width": 333,
+                          "height": 500,
+                          "provider_metadata": {
+                            "public_id": "small_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "medium": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg",
+                          "hash": "medium_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "medium_fire2.jpg",
+                          "path": null,
+                          "size": 54.05,
+                          "width": 500,
+                          "height": 750,
+                          "provider_metadata": {
+                            "public_id": "medium_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "thumbnail": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg",
+                          "hash": "thumbnail_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "thumbnail_fire2.jpg",
+                          "path": null,
+                          "size": 4.83,
+                          "width": 104,
+                          "height": 156,
+                          "provider_metadata": {
+                            "public_id": "thumbnail_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        }
+                      },
+                      "hash": "fire2_c3432a04b9",
+                      "ext": ".jpg",
+                      "mime": "image/jpeg",
+                      "size": 1035.25,
+                      "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg",
+                      "previewUrl": null,
+                      "provider": "cloudinary",
+                      "provider_metadata": {
+                        "public_id": "fire2_c3432a04b9",
+                        "resource_type": "image"
+                      },
+                      "createdAt": "2023-02-08T00:04:34.559Z",
+                      "updatedAt": "2023-02-28T06:42:43.253Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": 6,
+              "image": {
+                "data": [
+                  {
+                    "id": 1,
+                    "attributes": {
+                      "name": "fire2.jpg",
+                      "alternativeText": null,
+                      "caption": null,
+                      "width": 2304,
+                      "height": 3456,
+                      "formats": {
+                        "large": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/large_fire2_c3432a04b9.jpg",
+                          "hash": "large_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "large_fire2.jpg",
+                          "path": null,
+                          "size": 85.12,
+                          "width": 667,
+                          "height": 1000,
+                          "provider_metadata": {
+                            "public_id": "large_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "small": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/small_fire2_c3432a04b9.jpg",
+                          "hash": "small_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "small_fire2.jpg",
+                          "path": null,
+                          "size": 28.6,
+                          "width": 333,
+                          "height": 500,
+                          "provider_metadata": {
+                            "public_id": "small_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "medium": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/medium_fire2_c3432a04b9.jpg",
+                          "hash": "medium_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "medium_fire2.jpg",
+                          "path": null,
+                          "size": 54.05,
+                          "width": 500,
+                          "height": 750,
+                          "provider_metadata": {
+                            "public_id": "medium_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        },
+                        "thumbnail": {
+                          "ext": ".jpg",
+                          "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814672/thumbnail_fire2_c3432a04b9.jpg",
+                          "hash": "thumbnail_fire2_c3432a04b9",
+                          "mime": "image/jpeg",
+                          "name": "thumbnail_fire2.jpg",
+                          "path": null,
+                          "size": 4.83,
+                          "width": 104,
+                          "height": 156,
+                          "provider_metadata": {
+                            "public_id": "thumbnail_fire2_c3432a04b9",
+                            "resource_type": "image"
+                          }
+                        }
+                      },
+                      "hash": "fire2_c3432a04b9",
+                      "ext": ".jpg",
+                      "mime": "image/jpeg",
+                      "size": 1035.25,
+                      "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg",
+                      "previewUrl": null,
+                      "provider": "cloudinary",
+                      "provider_metadata": {
+                        "public_id": "fire2_c3432a04b9",
+                        "resource_type": "image"
+                      },
+                      "createdAt": "2023-02-08T00:04:34.559Z",
+                      "updatedAt": "2023-02-28T06:42:43.253Z"
+                    }
+                  }
+                ]
+              }
+            }
           ]
         }
       ],

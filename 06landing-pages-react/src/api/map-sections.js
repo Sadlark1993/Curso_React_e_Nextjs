@@ -115,14 +115,14 @@ export const mapTextGrid = (section = {}) => {
   */
 
   const {
-    __component: component = 'section.section-grid',
+    __component: component = '',
     Title: title = '',
     description = '',
     text_grid: grid = [],
     metadata: { background = false, section_id: sectionId = '' } = '',
   } = section;
   return {
-    component,
+    component: 'section.section-grid-text',
     title,
     description,
     grid,
@@ -131,6 +131,54 @@ export const mapTextGrid = (section = {}) => {
   };
 };
 
-export const mapImageGrid = (section) => {
-  return section;
+export const mapImageGrid = (section = {}) => {
+  /*
+    {
+      "__component": "section.section-grid",
+      "Title": "Gallery",
+      "description": "Its a Gallery",
+      "metadata": {
+        "name": "gallery",
+        "section_id": "gallery",
+        "background": false
+      },
+      "text_grid": [],
+      "image_grid": [
+        {
+          "image": {
+            "data": [
+              {
+                "attributes": {
+                  "alternativeText": null,
+                  "url": "https://res.cloudinary.com/dc4usb2so/image/upload/v1675814673/fire2_c3432a04b9.jpg",
+                }
+              }
+            ]
+          }
+        },
+      ]
+    }
+  */
+
+  const {
+    __component: component = '',
+    Title: title = '',
+    description = '',
+    metadata: { section_id: sectionId = '', background = false } = '',
+    image_grid: grid = [],
+  } = section;
+
+  return {
+    component: 'section.section-grid-image',
+    title,
+    description,
+    sectionId,
+    background,
+    grid: grid.map((img) => {
+      const {
+        image: { data: [{ attributes: { alternativeText: altText = '', url: srcImg = '' } = '' } = ''] = '' } = '',
+      } = img;
+      return { altText, srcImg };
+    }),
+  };
 };
