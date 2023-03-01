@@ -30,7 +30,7 @@ GridImage.propTypes = {
   description: PropTypes.string.isRequired,
   grid: PropTypes.arrayOf(
     PropTypes.shape({
-      altTex: PropTypes.string.isRequired,
+      altText: PropTypes.string.isRequired,
       srcImg: PropTypes.string.isRequired,
     }),
   ).isRequired,

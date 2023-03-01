@@ -6,6 +6,8 @@ import { theme } from '../../styles/themes';
 
 describe('<Home/>', () => {
   it('should render Home', () => {
-    renderTheme(<Home />);
+    const { container } = renderTheme(<Home />);
+    expect(screen.queryAllByRole('heading')).toHaveLength(25);
+    expect(container).toMatchSnapshot();
   });
 });

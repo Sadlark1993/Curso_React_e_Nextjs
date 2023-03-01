@@ -1,10 +1,25 @@
 /* cspell:disable */
 import { mapImageGrid, mapSectionContent, mapSections, mapSectionTwoColumns, mapTextGrid } from './map-sections';
+import mockData from './datas.json';
 
 describe('map-sections', () => {
   it('should return [] when no data is sent', () => {
     const data = mapSections();
     expect(data).toEqual([]);
+  });
+
+  it('should return [] when no data is sent', () => {
+    const data = mapSections([]);
+    expect(data).toEqual([]);
+  });
+
+  it('should map the sections', () => {
+    const data = mapSections(mockData[0].attributes.sections);
+    //console.log(data);
+    expect(data).toHaveLength(4);
+    expect(data[0].title).toBe('JANUARY BRINGS US FIREFOX 85');
+    expect(data[2].title).toBe('MY GRID');
+    expect(data[3].title).toBe('Gallery');
   });
 
   it('should map the sections when no data is given', () => {
@@ -154,26 +169,7 @@ describe('map-sections', () => {
     expect(data.description).toBe('Uma breve descrição.');
     expect(data.sectionId).toBe('grid-one');
     expect(data.title).toBe('MY GRID');
-    expect(data.grid).toEqual([
-      {
-        id: 1,
-        title: 'Teste 1',
-        description:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
-      },
-      {
-        id: 2,
-        title: 'Teste 2',
-        description:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
-      },
-      {
-        id: 3,
-        title: 'Teste 3',
-        description:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.\n\n',
-      },
-    ]);
+    expect(data.grid[0].title).toBe('Teste 1');
   });
 
   it('should map gid-image when no data is passed as argument', () => {

@@ -6,12 +6,12 @@ export const mapSections = (sections = []) => {
     } else if (section.__component === 'section.section-content') {
       return mapSectionContent(section);
     } else if (section.__component === 'section.section-grid') {
-      const { __component: { text_grid = [], image_grid = [] } = null } = section;
+      const { text_grid = [], image_grid = [] } = section;
 
-      if (text_grid.lenth > 0) {
+      if (text_grid.length > 0) {
         return mapTextGrid(section);
       }
-      if (image_grid.lengh > 0) {
+      if (image_grid.length > 0) {
         return mapImageGrid(section);
       }
     }
@@ -125,7 +125,10 @@ export const mapTextGrid = (section = {}) => {
     component: 'section.section-grid-text',
     title,
     description,
-    grid,
+    grid: grid.map((text) => {
+      const { title = '', description = '' } = text;
+      return { title, description };
+    }),
     background,
     sectionId,
   };
