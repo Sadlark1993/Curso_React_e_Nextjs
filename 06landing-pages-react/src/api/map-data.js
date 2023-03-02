@@ -2,7 +2,7 @@ import { mapSections } from './map-sections';
 import { mapMenu } from './map-menu';
 
 export const mapData = (pagesData = [{}]) => {
-  return pagesData.map((data) => {
+  return pagesData.data.map((data) => {
     const {
       footer_text = '',
       slug = '',
