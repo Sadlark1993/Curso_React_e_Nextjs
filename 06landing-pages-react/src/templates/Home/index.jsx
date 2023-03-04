@@ -37,6 +37,13 @@ function Home() {
     load();
   }, [location.pathname]);
 
+  //to set the title of the page in the browser
+  useEffect(() => {
+    if (data === undefined) document.title = 'Error 404';
+    if (data && !data.slug) document.title = 'Loading';
+    if (data && data.title) document.title = data.title;
+  }, [data]);
+
   if (data === undefined) return <PageNotFound />;
   if (data && !data.slug) {
     return <Loading />;
