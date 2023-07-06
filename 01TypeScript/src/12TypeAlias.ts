@@ -15,7 +15,7 @@ const person: Person ={
 }
 
 type ColorRGB = 'red' | 'blue' | 'green';
-type ColorCMYK = 'cian' | 'magenta' | 'yelow' | 'black';
+type ColorCMYK = 'cian' | 'magenta' | 'yellow' | 'black';
 type Color = ColorRGB | ColorCMYK;
 
 export function setFavoriteColor(person:Person, favoriteColor: Color){

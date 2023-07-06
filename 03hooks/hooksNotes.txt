@@ -1,0 +1,25 @@
+//the comonent will be rendered only if its properties change
+React.memo(function CompName(prop){
+	return <tag>{prop.ulele}</tag>
+}); //memorizes the component if it does't change.
+
+//useCalback will prevent the funcion from being recreated, if it's dependencies does't change
+const funcName = useCallback((args) => {<funcBody>}, [dependencies]);
+
+//useCalback stores functions, memo stores values.
+
+...
+return(
+	{useMemo(() => <Component>{children}</Component>, [dependencies])}
+)
+
+or...
+
+const comp = {
+	return useMemo(() => <Component>{children}</Component>, [dependendcies]);
+}
+
+...
+return (
+	{comp}
+); //same thing.

@@ -21,10 +21,6 @@ export const CounterContextProvider = ({ children }) => {
   return <Context.Provider value={[state, actions.current]}>{children}</Context.Provider>;
 };
 
-CounterContextProvider.propTypes = {
-  children: PropTypes.node,
-};
-
 export const useCounterContext = () => {
   const context = useContext(Context);
 
@@ -32,4 +28,8 @@ export const useCounterContext = () => {
     throw new Error('You have to use "useCounterContext" inside "<CounterContextProvider/>".');
 
   return [...context];
+};
+
+CounterContextProvider.propTypes = {
+  children: PropTypes.node,
 };

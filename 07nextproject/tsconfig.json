@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/_document.jsx", "src/pages/_app.jsx", "src/pages/_app.jsx", "src/components/sharedstyles.js", "src/components/cards.jsx", "src/components/globalstyles.js", "styled.d.js", "src/pages/index.jsx", "src/pages/about.jsx"],
+  "exclude": ["node_modules"]
+}

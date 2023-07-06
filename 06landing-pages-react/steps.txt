@@ -1,4 +1,5 @@
 npx create-react-app .
+//if using typescript: npx create-react-app . --template typescript
 //copy devDependencies of package.json of your previous project to this one;
 //copy .prettierrc.js, eslintrc.js and .editorconfig from your previous...
 npm i    //install dependencies.
@@ -21,3 +22,7 @@ npm test -- --watchAll="false" --coverage
 
 //install icons library
 npm i @styled-icons/material-outlined
+
+//The teacher made the deploy of the strapi backend on Heroku, and the front at Netilify.
+//I didn't do that, because nowadays, the dino servers on Heroku are paid per time used, and 
+//I've already tested that with another project.

@@ -1,0 +1,23 @@
+/*
+acronyms:
+SPA - Single Page Application
+CSR - Client Side Rendering
+SSG - Static Side Generation
+SSR - Server Side Rendering
+ISG / ISR - Incremental Static Generation/Regeneration
+*/
+
+//configuring the styled-components
+
+/*
+you can create the project with all the boiler plate to this by: npm create-next-app --exemple with-styled-components with-styled-components-app
+*/
+
+//or, you can do it manually:
+
+npm i styled-components
+npm i -D babel-plugin-styled-components //not needed anymore
+
+//config eslint and prettier
+//create and config the files .prettierrc.js and .eslintrc.js
+npm i -D prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react-hooks
