@@ -23,3 +23,16 @@ npm i styled-components
 //create and config the files .prettierrc.js and .eslintrc.js
 npm i -D prettier eslint-config-prettier eslint-plugin
 npx eslint --init
+
+npm install --save-dev eslint-plugin-prettier@^5.0.0-alpha.1
+
+npx eslint --fix 'src/**/*.js' --fix
+npx eslint --fix 'src/**/*.jsx' --fix
+
+npm i prop-types
+
+//after installing the storybook, in the npm script, make id be like this:
+    "storybook": "start-storybook -p 6006 -s ./public"
+
+npm i -D jest jest-styled-components
+npm i -D @testing-library/jest-dom @testing-library/react
