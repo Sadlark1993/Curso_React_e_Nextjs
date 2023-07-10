@@ -6,6 +6,7 @@ export const theme = {
     sakuraz: '	#ffb1ef',
     boom: '#504b78',
     white: 'white',
+    secondaryBg: 'pink',
   },
   fonts: {
     family: {

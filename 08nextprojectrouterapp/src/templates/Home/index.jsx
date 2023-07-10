@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { Heading } from '../../components/Heading';
 import { Base } from '../Base';
@@ -16,11 +15,10 @@ import { GridImage } from '../../components/GridImage';
 
 function Home() {
   const [data, setData] = useState([]);
-  const location = useLocation();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const pathName = location.pathname.replace(/[^a-z0-9-_]/gi, '');
-    const slug = pathName ? pathName : 'landing-page';
+    //const slug = pathName ? pathName : 'landing-page';
 
     const load = async () => {
       try {
@@ -35,7 +33,7 @@ function Home() {
     };
 
     load();
-  }, [location.pathname]);
+  }, [location.pathname]); */
 
   //to set the title of the page in the browser
   useEffect(() => {

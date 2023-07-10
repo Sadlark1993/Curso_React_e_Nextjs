@@ -1,5 +1,5 @@
 import P from 'prop-types';
-import { AppProps } from 'next/app';
+//import { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 import StyledComponentsRegistry from '../lib/registry';
 
@@ -20,4 +20,6 @@ export default function RootLayout({ children }) {
   );
 }
 
-RootLayout.propTypes = AppProps;
+RootLayout.propTypes = {
+  children: P.any,
+};

@@ -23,8 +23,8 @@ const titleSize = {
 };
 
 export const titleStyle = styled.h1`
-  ${({ theme, darkTitle, size, uppercase }) => css`
-    color: ${darkTitle ? theme.colors.primaryColor : theme.colors.white};
+  ${({ theme, darktitle, size, uppercase }) => css`
+    color: ${darktitle ? theme.colors.primaryColor : theme.colors.white};
     ${titleSize[size](theme)}
     text-transform: ${uppercase ? 'uppercase' : 'none'};
   `}

@@ -22,3 +22,6 @@ npm i -D babel-plugin-styled-components //not needed anymore
 //create and config the files .prettierrc.js and .eslintrc.js
 npm i -D prettier eslint-config-prettier eslint-plug
 npx eslint --init
+
+npm i -D jest jest-styled-components
+npm i -D @testing-library/jest-dom @testing-library/react

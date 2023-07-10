@@ -1,5 +1,7 @@
 'use client';
 
+import P from 'prop-types';
+
 import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
@@ -19,3 +21,7 @@ export default function StyledComponentsRegistry({ children }) {
 
   return <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>{children}</StyleSheetManager>;
 }
+
+StyledComponentsRegistry.propTypes = {
+  children: P.any,
+};
